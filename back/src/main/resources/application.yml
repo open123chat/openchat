@@ -7,3 +7,32 @@ spring:
         max-active: 8
     port: 6379
     host: localhost
+
+---
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/chat?characterEncoding=utf8
+    username: chat
+    password: chat
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+
+# server
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: false
+      force-request: false
+      force-response: false
+
+---
+# mybatis
+mybatis:
+  config-location: classpath:mybatis/configuration.xml
+---
