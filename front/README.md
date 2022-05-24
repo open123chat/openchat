@@ -5,3 +5,12 @@
  - cd my-app
  - npm i (open folder 시)
  - npm start
+
+### 리엑트, 라우터
+ - npm i react-router react-router-dom
+
+### 부트 스트랩
+ - npm i react-bootstrap bootstrap
+
+ 부트스트랩 사용 시 꼭 import 해주기
+ import 'bootstrap/dist/css/bootstrap.css';

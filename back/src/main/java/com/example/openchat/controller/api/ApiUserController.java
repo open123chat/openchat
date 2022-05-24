@@ -18,12 +18,13 @@ public class ApiUserController {
     public void FindByIdUser(){
         userService.FindByIdUser();
     }
+
     //유저 추가
+    @CrossOrigin
     @PostMapping("/join")
     public ResponseEntity UserJoin(@RequestBody UserVo userVo){
         System.out.println("때려짐??");
         System.out.println("받은 유저 정보 : "+userVo);
-        userService.JoinUser(userVo);
-        return new ResponseEntity<>(1, HttpStatus.OK);
+        return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
     }
 }
