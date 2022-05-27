@@ -13,6 +13,9 @@ const Login = () => {
         });
     } 
     
+    const userLogin = () =>{
+        console.log('로그인할 사용자 : ',user);
+    }
 
 
     return (
@@ -28,11 +31,11 @@ const Login = () => {
                 <Form.Control type="password" placeholder="Password를 입력해주세요" name="userPassword" onChange={changeValue}/>
             </Form.Group>
 
-            <Button variant="primary" type="submit" onClick={()=>{}}>
+            <Button variant="primary"  onClick={()=>{userLogin()}}>
                 로그인
             </Button>
-            <Button variant="primary" type="submit">
-                <Link to = "/join">회원가입</Link>
+            <Button variant="primary"  >
+                <Link to = "/join" style={{color:"white"}}>회원가입</Link>
             </Button>
             </Form>
         </SiteLayout>
