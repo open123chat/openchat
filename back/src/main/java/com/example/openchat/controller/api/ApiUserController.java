@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin({"http://localhost:3000"})
 public class ApiUserController {
     @Autowired
     private UserService userService;
@@ -23,7 +24,6 @@ public class ApiUserController {
     }
 
     //회원가입
-    @CrossOrigin
     @PostMapping("/join")
     public ResponseEntity UserJoin(@RequestBody UserVo userVo){
         System.out.println("때려짐??");
