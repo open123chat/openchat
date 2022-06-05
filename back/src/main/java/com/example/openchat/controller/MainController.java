@@ -35,4 +35,10 @@ public class MainController {
         redisSampleService.setRedisStringValue(key, value);
     }
     //test
+
+    //시큐리티 로그인 테스트
+    @GetMapping("/home")
+    public String home(){
+        return "<h1> HOME </h1>";
+    }
 }

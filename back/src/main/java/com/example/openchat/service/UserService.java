@@ -11,9 +11,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserVo findByIdAndPasswordUser(){
-        return userRepository.findByIdAndPasswordUser();
-    }
+//    public UserVo findByIdAndPasswordUser(){
+//        return userRepository.findByIdAndPasswordUser();
+//    }
     public int JoinUser(UserVo userVo){
         return userRepository.JoinUser(userVo);
     }

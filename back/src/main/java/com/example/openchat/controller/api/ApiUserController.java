@@ -17,11 +17,11 @@ public class ApiUserController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    //로그인
-    @GetMapping
-    public ResponseEntity findByIdAndPasswordUser(){
-        return new ResponseEntity<>(userService.findByIdAndPasswordUser(),HttpStatus.OK); //200
-    }
+    //간편 로그인
+//    @GetMapping
+//    public ResponseEntity findByIdAndPasswordUser(){
+//        return new ResponseEntity<>(userService.findByIdAndPasswordUser(),HttpStatus.OK); //200
+//    }
 
     //회원가입
     @PostMapping("/join")
@@ -34,4 +34,8 @@ public class ApiUserController {
         userVo.setUserPassword(afterPassword);
         return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
     }
+
+
+
+
 }
