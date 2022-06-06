@@ -112,5 +112,6 @@ public class RedisConfig {
 ![image](https://user-images.githubusercontent.com/74044234/155322119-2e735c88-7435-41da-865b-2e18c998393d.png)
 
 
-### React-Spring chat 프로젝트
+### JWT 
+https://www.notion.so/JWT-Json-Web-Token-dd614cdad8d24ea58eee9215241bdfb7
 
