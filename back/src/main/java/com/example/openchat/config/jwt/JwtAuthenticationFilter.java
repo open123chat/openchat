@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -42,6 +44,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             System.out.println("principal 유저 : "+principalDetails.getUser().getUsername());
             System.out.println(principalDetails.getUser().getUsername());
             System.out.println("*********************************************");
+            //authentication 객체가 session 영역에 저장하고 return
+            //리턴 이유는 권한 관리를 security가 대신 해주기때문에 편하기 위해서
+            //JWT토큰을 사용하면 세션을 만들 필요없지만 권한 처리를 위해 생성하였다.
 
             return  authentication;
         } catch (IOException e) {
@@ -55,5 +60,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         //4. JWT토큰을 만들어서 응답해주면된다.
         System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         return null;
+    }
+
+    // attemptAuthentication 실행 후 = 인증이 정상적으로 되었으면
+    //successfulAuthentication 실행 --> JWT토큰 만들어서 request 요청한 사용자에게 JWT토큰을 response
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        System.out.println("sucessfulAuthentication실행 됨 = 인증완료");
+        super.successfulAuthentication(request, response, chain, authResult);
     }
 }
