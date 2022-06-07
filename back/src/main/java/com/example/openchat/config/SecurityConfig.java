@@ -1,5 +1,6 @@
 package com.example.openchat.config;
 
+import com.example.openchat.filter.MyFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
@@ -24,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http.addFilterBefore(new MyFilter(), BasicAuthenticationFilter.class);
         http.csrf().disable();
         //세션을 사용하지 않고 stateless 방식 사용하겠다
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
