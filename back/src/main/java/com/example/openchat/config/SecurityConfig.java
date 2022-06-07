@@ -1,5 +1,6 @@
 package com.example.openchat.config;
 
+import com.example.openchat.config.jwt.JwtAuthenticationFilter;
 import com.example.openchat.filter.MyFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -37,8 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(corsFilter)
                 .formLogin().disable()
                 .httpBasic().disable()
+
+                .addFilter(new JwtAuthenticationFilter(authenticationManager())) //AuthenticationManger파라매터를 넘겨줘야함 어댑터가 들고있음
+
                 .authorizeRequests()
-                .antMatchers("/api/user/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/user/info/**").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().permitAll();
 
     }

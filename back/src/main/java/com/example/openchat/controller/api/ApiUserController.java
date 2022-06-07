@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin({"http://localhost:3000"})
+//@CrossOrigin({"http://localhost:3000"})
 public class ApiUserController {
     @Autowired
     private UserService userService;
@@ -29,9 +29,10 @@ public class ApiUserController {
         System.out.println("때려짐??");
         System.out.println("받은 유저 정보 : "+userVo);
         //비밀번호 암호화
-        String beforePassword = userVo.getUserPassword();
+        String beforePassword = userVo.getPassword();
         String afterPassword = passwordEncoder.encode(beforePassword);
-        userVo.setUserPassword(afterPassword);
+        userVo.setPassword(afterPassword);
+        userVo.setRoles("ROLE_USER");
         return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
     }
 
