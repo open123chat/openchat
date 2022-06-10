@@ -1,7 +1,9 @@
 package com.example.openchat.config;
 
 import com.example.openchat.config.jwt.JwtAuthenticationFilter;
+import com.example.openchat.config.jwt.JwtAuthorizationFilter;
 import com.example.openchat.filter.MyFilter;
+import com.example.openchat.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +21,7 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
-
+    private  final UserRepository userRepository;
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -40,9 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
 
                 .addFilter(new JwtAuthenticationFilter(authenticationManager())) //AuthenticationManger파라매터를 넘겨줘야함 어댑터가 들고있음
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(),userRepository))
 
                 .authorizeRequests()
-                .antMatchers("/api/user/info/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/user/info/user").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+                .antMatchers("/api/user/info/admin").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().permitAll();
 
     }

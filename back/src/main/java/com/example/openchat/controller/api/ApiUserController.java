@@ -36,7 +36,16 @@ public class ApiUserController {
         return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
     }
 
+    //user,admin권한만 접근가능
+    @GetMapping("/info/user")
+    public String infoUser(){
+        return "user";
+    }
 
+    //admin권한만 접근가능
+    @GetMapping("/info/admin")
+    public String infoAdmin(){
 
-
+        return "admin";
+    }
 }
