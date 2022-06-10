@@ -1,5 +1,7 @@
 package com.example.openchat.config.jwt;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.example.openchat.config.auth.PrincipalDetails;
 import com.example.openchat.vo.UserVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 //스프링 시큐리티에서 /login 요청을해서 username,password를 전송하면 UsernamePasswordAuthenticationFilter 동장
 //설정에서 formlogin을 disable시켰기 때문에 동작을 하지않음
@@ -38,8 +41,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             //PrincipalDetailsService의 loadUserByUsername 실행됨
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
-            //authentication 객체가 session 영역에 저장된다.
-            // = 로그인이 되었습니다~
+
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
             System.out.println("principal 유저 : "+principalDetails.getUser().getUsername());
             System.out.println(principalDetails.getUser().getUsername());
@@ -67,6 +69,18 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         System.out.println("sucessfulAuthentication실행 됨 = 인증완료");
-        super.successfulAuthentication(request, response, chain, authResult);
+
+        //authentication 객체가 session 영역에 저장된다.
+        // = 로그인이 되었습니다~
+        PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
+
+        //JWT 토큰 생성하기
+        String jwtToken = JWT.create()
+                .withSubject("사용자 토큰")
+                        .withExpiresAt(new Date(System.currentTimeMillis()+(60000 * 10))) //토큰 만료 시간 (현재시간 + 10분)
+                        .withClaim("id",principalDetails.getUser().getUserNo())
+                                .withClaim("username",principalDetails.getUser().getUsername())
+                                        .sign(Algorithm.HMAC512("cos"));
+        response.addHeader("Authorization","Bearer "+jwtToken); //응답해줄 때 header에 담을 data
     }
 }
