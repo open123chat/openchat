@@ -32,7 +32,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
  //인증이나 권한이 필요한 요청이 있을때 해당 메소드가 실행될 것 = header값을 확인해서 확인
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        super.doFilterInternal(request, response, chain);
         System.out.println("인증이나 권한이 필요한 주소 요청이 옴");
 
         String jwtHeader = request.getHeader("Authorization");
@@ -50,15 +49,17 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         String username = JWT.require(Algorithm.HMAC512("cos")).build().verify(jwtToKen).getClaim("username").asString();
         //서명이 정상
         if(username !=null){
+            System.out.println("if문 실행됨??");
             UserVo userEntity = userRepository.findByUserName(username);
 
             PrincipalDetails principalDetails = new PrincipalDetails(userEntity);
             //임의로 Authentication 객체 생성 - usernamePasswordAuthenticationToken - service 안타기 위해서
             //JWT 토큰 서명을 통해 정상이면 Authentication 객체 생성
-            Authentication authentication = new UsernamePasswordAuthenticationToken(principalDetails,null);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(principalDetails,null,principalDetails.getAuthorities());
             //강제로 시큐리티 세션에 접근하여 Authentication 객체를 저장
+            System.out.println("authentication 객체 확인 : "+authentication);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            chain.doFilter(request,response);
         }
+        chain.doFilter(request,response);
  }
 }
