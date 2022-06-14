@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button, Container, Form, FormControl, Nav, Navbar} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 
+
 const Header = () => {
-    return (
+  const[logbar,setLogbar] = useState(true);
+  let token = localStorage.getItem('Authorization')
+  const logout =() =>{
+    alert('로그아웃 되었습니다.')
+    setLogbar(false);
+    localStorage.clear();
+  }
+  return ( 
       <>
       <Navbar bg="light" expand="lg">
         <Container fluid>
@@ -17,8 +25,11 @@ const Header = () => {
             >
               <Link to = "/" className="navbar-brand">Home</Link>
               <Nav className="mr-auto">
-              <Link to = "/login" className="nav-link">로그인</Link>
-              
+                {
+                  token == null
+                  ? <Link to = "/login" className="nav-link">로그인</Link> 
+                  : <Link to = "/" className="nav-link" onClick={()=>{logout()}}>로그아웃</Link>
+                }
               </Nav>
               {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
