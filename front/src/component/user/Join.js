@@ -17,7 +17,7 @@ const Login = (props) => {
         console.log('유저 회원가입 정보 : ',userObj);
         
         const fetchfun = async() => {
-            const response = await fetch("http://localhost:8080/chat/api/user/join",{
+            const response = await fetch("http://localhost:8080/api/user/join",{
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json',
@@ -50,17 +50,17 @@ const Login = (props) => {
             <Form>
             <Form.Group className="mb-3" controlId="formBasicId">
                 <Form.Label>id</Form.Label>
-                <Form.Control type="id" placeholder="id를 입력해주세요" name="userId" onChange={changeValue}/>
+                <Form.Control type="id" placeholder="id를 입력해주세요" name="username" onChange={changeValue}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password를 입력해주세요" name="userPassword" onChange={changeValue}/>
+                <Form.Control type="password" placeholder="Password를 입력해주세요" name="password" onChange={changeValue}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>이름</Form.Label>
-                <Form.Control type="name" placeholder="이름을 입력해주세요" name="userName" onChange={changeValue}/>
+                <Form.Control type="name" placeholder="이름을 입력해주세요" name="userNickName" onChange={changeValue}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">

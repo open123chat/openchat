@@ -2,7 +2,6 @@ package com.example.openchat.config;
 
 import com.example.openchat.config.jwt.JwtAuthenticationFilter;
 import com.example.openchat.config.jwt.JwtAuthorizationFilter;
-import com.example.openchat.filter.MyFilter;
 import com.example.openchat.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
