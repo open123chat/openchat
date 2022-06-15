@@ -3,6 +3,8 @@ import { Button,Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
 import { useNavigate } from 'react-router-dom';
+import jwt_encode from 'jwt-decode';
+
 const Login = () => {
     let navigate = useNavigate();
     const[user,setUser] = useState();
@@ -27,9 +29,23 @@ const Login = () => {
             }).then((res) => {
                 console.log(1,res.headers);
                 console.log("token ", res.headers.get("Authorization"))
+
                 if(res.status===200){
                     // res.headers("Authorization")
                     localStorage.setItem("Authorization", res.headers.get("Authorization"));
+                    let jwttoken = localStorage.getItem('Authorization')
+                    if (jwttoken !== undefined && jwttoken !== null) {
+                        var bearerSplit = jwttoken.replace("Bearer ","");
+                        // let base64Payload = bearerSplit.split('1')[1];
+                        // let payLoad = Buffer.from(base64Payload,'base64'); // Buffer 못찾음 해결
+                        // let result = JSON.parse(payLoad.toString())
+                        var decoded = jwt_encode(bearerSplit);
+                        console.log("decoded username: ",decoded.username);
+                        console.log("decoded userid: ",decoded.id);
+                        localStorage.setItem("username", decoded.username);
+                        localStorage.setItem("userNo",decoded.id);
+                     }
+
                     return res;
                 } else{
                     return null;

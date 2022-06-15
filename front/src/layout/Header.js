@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom';
 
 const Header = () => {
   const[logbar,setLogbar] = useState(true);
-  let token = localStorage.getItem('Authorization')
+  let username = localStorage.getItem('username')
+
   const logout =() =>{
     alert('로그아웃 되었습니다.')
     setLogbar(false);
@@ -26,9 +27,13 @@ const Header = () => {
               <Link to = "/" className="navbar-brand">Home</Link>
               <Nav className="mr-auto">
                 {
-                  token == null
+                  username == null
                   ? <Link to = "/login" className="nav-link">로그인</Link> 
-                  : <Link to = "/" className="nav-link" onClick={()=>{logout()}}>로그아웃</Link>
+                  : 
+                    <>
+                      <Link to = "" className='nav-link'>사용자 : {username}</Link>
+                      <Link to = "/" className="nav-link" onClick={()=>{logout()}}>로그아웃</Link>
+                    </>
                 }
               </Nav>
               {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
@@ -39,9 +44,7 @@ const Header = () => {
                   Something else here
                 </NavDropdown.Item>
               </NavDropdown> */}
-              <Nav.Link href="#" disabled>
-                Link
-              </Nav.Link>
+              
             </Nav>
             <Form className="d-flex">
               <FormControl
@@ -52,6 +55,7 @@ const Header = () => {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
+            
           </Navbar.Collapse>
         </Container>
       </Navbar>
