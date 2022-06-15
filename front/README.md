@@ -14,3 +14,7 @@
 
  부트스트랩 사용 시 꼭 import 해주기
  import 'bootstrap/dist/css/bootstrap.css';
+
+ ### jwt토큰 decode
+ - npm i jwt-decode
+ https://www.npmjs.com/package/jwt-decode
