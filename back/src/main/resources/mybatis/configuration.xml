@@ -5,10 +5,12 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias alias="uservo" type="com.example.openchat.vo.UserVo"/>
+        <typeAlias alias="userVo" type="com.example.openchat.vo.UserVo"/>
+        <typeAlias alias="communityVo" type="com.example.openchat.vo.CommunityVo"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/mapper/user.xml"/>
+        <mapper resource="mybatis/mapper/community.xml"/>
     </mappers>
 
 </configuration>

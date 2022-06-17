@@ -84,6 +84,5 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         System.out.println("JWT 토큰 생성완료 : "+ jwtToken);
         response.addHeader("Authorization","Bearer "+jwtToken); //응답해줄 때 header에 담을 data(jwt토큰)
 
-
     }
 }
