@@ -5,10 +5,9 @@ import com.example.openchat.vo.CommunityVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/community")
@@ -17,6 +16,15 @@ public class ApiCommunityController {
     @Autowired
     private CommunityService communityService;
 
+    //커뮤니티 메인(모든 데이터)
+    @GetMapping("/list")
+    public ResponseEntity CommunityList(){
+        System.out.println("커뮤니티 List controller 주소 요청옴?");
+        List<CommunityVo> communityList = communityService.CommunityList();
+        System.out.println("커뮤니티 List : "+communityList);
+        return new ResponseEntity<>(communityList,HttpStatus.OK);
+    }
+    //커뮤니티 작성
     @PostMapping("/write")
     public ResponseEntity CommunityWrite(@RequestBody CommunityVo communityVo){
         System.out.println("커뮤니티 쓰기 Data : "+communityVo);
