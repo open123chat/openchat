@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import SiteLayout from '../../layout/SiteLayout';
+import CommunityItem from './CommunityItem';
 const Community = () => {
-    const [communityList,setCommunityList] =useState();
+    const [communityList,setCommunityList] =useState([]);
     useEffect(()=>{
         console.log("커뮤니티 dom 실행됨")
+        // fetch("http://localhost:8080/api/community/list")
+        // .then(res=>res.json())
+        // .then(res=>{
+        //     console.log('list :',res)
+        // });
         const data = async () =>{
                 const result = await fetch("http://localhost:8080/api/community/list",{
                     method:"GET",
@@ -14,15 +20,16 @@ const Community = () => {
                     },
                     body:null                
                 })//end fetch
-                .then(res=>res.json)
+                .then(res=>res.json())
                 .then(res=>{
-                    console.log('result 값',res);
-                    setCommunityList(res.data);
+                    console.log('list 값',res);
+                    setCommunityList(res);
                     
                 })
         };
         data();
         console.log('fetch 실행됨?',communityList);
+
     },[]); //end useEffect
 
     return (
@@ -33,18 +40,15 @@ const Community = () => {
             <div style={{height:'80%', width:'100%'}}>
                 <table style={{width:'100%'}}>
                     <thead>
-                        <td style={{width:'5%'}}>No</td>
-                        <td style={{width:'75%'}}>제목</td>
-                        <td style={{width:'10%'}}>작성자</td>
-                        <td style={{width:'10%'}}>작성 시간</td>
+                        <tr>
+                        <th style={{width:'5%'}}>No</th>
+                        <th style={{width:'75%'}}>제목</th>
+                        <th style={{width:'10%'}}>작성자</th>
+                        <th style={{width:'10%'}}>작성 시간</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <td>1</td>
-                        <td>제목 테스트</td>
-                        <td>khu</td>
-                        <td>2022</td>
-                        <tr></tr>
-                        <td>2</td>
+                        {communityList.map(community=><CommunityItem key={community.communityNo} community={community}/>)}
                     </tbody>
                 </table>
             </div>
