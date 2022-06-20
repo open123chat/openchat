@@ -19,6 +19,7 @@ const Community = () => {
                         'Content-Type':'application/json',
                         'Accept':'application/json'
                     },
+                    
                     body:null                
                 })//end fetch
                 .then(res=>res.json())

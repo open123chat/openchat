@@ -17,6 +17,12 @@ public class CommunityService {
         List<CommunityVo> communityList= communityRepository.CommunityList();
         return communityList;
     }
+
+    // 커뮤니티 상세보기
+    public CommunityVo findCommunity(Long communityNo) {
+        return communityRepository.findCommunity(communityNo);
+    }
+
     //커뮤니티 작성
     public int CommunityWrite(CommunityVo communityVo){
         return communityRepository.CommunityWrite(communityVo);

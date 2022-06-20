@@ -18,10 +18,21 @@ public class ApiCommunityController {
 
     //커뮤니티 메인(모든 데이터)
     @GetMapping("/list")
-    public ResponseEntity CommunityList(){
+    public ResponseEntity CommunityList(
+//            @RequestParam(defaultValue = "") int page,
+//            @RequestParam(defaultValue = "") int size
+    ) {
         System.out.println("커뮤니티 List controller 주소 요청옴?");
         return new ResponseEntity<>(communityService.CommunityList(),HttpStatus.OK);
     }
+
+    // 커뮤니티 상세보기
+    @GetMapping("/{communityNo}")
+    public ResponseEntity findCommunity(@PathVariable Long communityNo) {
+        System.out.println("김행운 언젠간 복수한다");
+        return new ResponseEntity<>(communityService.findCommunity(communityNo), HttpStatus.OK);
+    }
+
     //커뮤니티 작성
     @PostMapping("/write")
     public ResponseEntity CommunityWrite(@RequestBody CommunityVo communityVo){
