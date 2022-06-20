@@ -8,6 +8,7 @@ import Join from "./component/user/Join";
 import Chat from "./component/chat/Chat"
 import Community from "./component/community/Community"
 import Notice from "./component/notice/Notice"
+import CommunityWrite from "./component/community/CommunityWrite";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/join" element={<Join />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/communityWrite" element={<CommunityWrite/>}/>
           <Route path="/notice" element={<Notice />} />
       </Routes>
     </Router>

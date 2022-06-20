@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
 import CommunityItem from './CommunityItem';
 const Community = () => {
@@ -44,7 +45,7 @@ const Community = () => {
                         <th style={{width:'5%'}}>No</th>
                         <th style={{width:'75%'}}>제목</th>
                         <th style={{width:'10%'}}>작성자</th>
-                        <th style={{width:'10%'}}>작성 시간</th>
+                        <th style={{width:'10%'}}>작성일</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +54,7 @@ const Community = () => {
                 </table>
             </div>
             <div style={{display:'flex',justifyContent:'flex-end'}}>
-                <Button>글쓰기</Button>
+                <Link to ="/communityWrite"><Button>글쓰기</Button></Link>
             </div>
         </SiteLayout>
     );
