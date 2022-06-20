@@ -25,7 +25,8 @@ public class ApiCommunityController {
     //커뮤니티 작성
     @PostMapping("/write")
     public ResponseEntity CommunityWrite(@RequestBody CommunityVo communityVo){
-        System.out.println("커뮤니티 쓰기 Data : "+communityVo);
+        System.out.println("ㅠㅠ");
+        System.out.println("커뮤니티 쓰기 Data : " + communityVo);
         return new ResponseEntity<>(communityService.CommunityWrite(communityVo),HttpStatus.CREATED);
     }
 

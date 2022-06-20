@@ -54,7 +54,17 @@ const Community = () => {
                 </table>
             </div>
             <div style={{display:'flex',justifyContent:'flex-end'}}>
-                <Link to ="/communityWrite"><Button>글쓰기</Button></Link>
+                <Button>
+                    {
+                    localStorage.getItem('Authorization') ==null
+                    ?
+                    <Link to ="/login" style={{color:'white', textDecoration:'none'}}>
+                    글쓰기</Link>
+                    :
+                    <Link to ="/communityWrite" style={{color:'white', textDecoration:'none'}}>
+                    글쓰기</Link>
+                    }                   
+                    </Button>
             </div>
         </SiteLayout>
     );

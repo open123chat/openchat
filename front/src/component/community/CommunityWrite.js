@@ -7,6 +7,8 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styled from 'styled-components';
 import { convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+
+import { useNavigate } from 'react-router-dom';
 // // imports for summernote
 // import ReactSummernote from "react-summernote";
 // import "react-summernote/dist/react-summernote.css";
@@ -30,6 +32,7 @@ const MyBlock = styled.div`
   }
 `;
 const CommunityWrite = () => {
+    let navigator = useNavigate();
     const [communityWrite, setCommunityWrite] = useState({
         communityTitle:''});
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -49,12 +52,42 @@ const CommunityWrite = () => {
 
     const submitCommunity= (e)=>{
         
+        //draftToHtml 에디터에서 작성된 값을 html 값으로 변환해줌
         console.log("submit data : ", draftToHtml(convertToRaw(editorState.getCurrentContent())));
-        let data = [{...communityWrite,
+        let data = {...communityWrite,
             'communityContent':draftToHtml(convertToRaw(editorState.getCurrentContent())),
             'userNo':localStorage.userNo
-        }]
+        }
         console.log('data',data)
+        const fetchfun = async() =>{
+            const response = await fetch("http://localhost:8080/api/community/write",{
+                                method:"POST",
+                                headers:{
+                                    'Authorization':localStorage.getItem('Authorization'),
+                                    'Content-Type':'application/json',
+                                    'Accept':'application/json'
+                                },
+                                body:JSON.stringify(data)
+                            })
+                            .then((res)=>{
+                                console.log('커뮤니티 작성 결과',res);
+                                if(res.status===201){
+                                    
+                                    return res;
+                                }else{
+                                    return null;
+                                }
+                            })
+                            .then((res)=>{
+                                if(res!==null){
+                                    console.log('커뮤니티 작성 성공')
+                                    navigator("/community")
+                                }else{
+                                    alert("글 작성에 실패하였습니다.")
+                                }
+                            });
+        }
+        fetchfun();
     }
     return (
         <SiteLayout>
