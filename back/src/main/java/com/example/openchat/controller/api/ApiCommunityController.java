@@ -20,9 +20,7 @@ public class ApiCommunityController {
     @GetMapping("/list")
     public ResponseEntity CommunityList(){
         System.out.println("커뮤니티 List controller 주소 요청옴?");
-        List<CommunityVo> communityList = communityService.CommunityList();
-        System.out.println("커뮤니티 List : "+communityList);
-        return new ResponseEntity<>(communityList,HttpStatus.OK);
+        return new ResponseEntity<>(communityService.CommunityList(),HttpStatus.OK);
     }
     //커뮤니티 작성
     @PostMapping("/write")
