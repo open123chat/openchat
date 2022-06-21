@@ -51,12 +51,16 @@ const CommunityDetail = () => {
                         <Form.Label style={{fontSize:'30px', fontWeight:'bold'}}>{communityDetail.communityTitle}</Form.Label>
                         
                         <div className="mb-3">
-                            <label style={{marginRight:'20px'}}>작성자:{communityDetail.username}</label>
+                            <label style={{marginRight:'20px'}}>작성자 : {communityDetail.username}</label>
                             <label>{communityDetail.communityDate}</label>
                         </div>
                     </div>
-                    <div dangerouslySetInnerHTML={{__html: communityDetail.communityContent}} style={{marginTop:"50px"} }>
-                        
+                    <div className="mb-3" style={{borderBottom:'1px solid gray'}} >
+                        <div dangerouslySetInnerHTML={{__html: communityDetail.communityContent}} style={{marginTop:"50px",marginBottom:"50px"} }>
+                    </div>    
+                    </div>
+                    <div>
+                        댓글 준비중
                     </div>
                 </Form.Group>
             </Form>
