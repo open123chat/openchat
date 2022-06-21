@@ -55,8 +55,8 @@ const CommunityDetail = () => {
                             <label>{communityDetail.communityDate}</label>
                         </div>
                     </div>
-                    <div style={{marginTop:"50px"} }>
-                        {communityDetail.communityContent}
+                    <div dangerouslySetInnerHTML={{__html: communityDetail.communityContent}} style={{marginTop:"50px"} }>
+                        
                     </div>
                 </Form.Group>
             </Form>
