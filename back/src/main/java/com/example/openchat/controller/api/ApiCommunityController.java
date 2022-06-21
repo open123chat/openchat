@@ -52,7 +52,7 @@ public class ApiCommunityController {
     }
 
     //커뮤니티 삭제
-    @DeleteMapping("/delete/{communityNo}")
+    @DeleteMapping("/{communityNo}")
     public ResponseEntity CommunityWrite(@PathVariable Long communityNo){
         System.out.println("커뮤니티 삭제 요청 들어옴 : "+communityNo);
         int result = communityService.communityDelete(communityNo);

@@ -6,6 +6,7 @@ import com.example.openchat.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -47,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/info/admin").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/community/write").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                 .antMatchers("/api/community/mylist/*").access("hasRole('ROLE_USER')")
-                .antMatchers("/api/community/delete/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+                .antMatchers(HttpMethod.DELETE,"/api/community/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                 .anyRequest().permitAll();
 
     }

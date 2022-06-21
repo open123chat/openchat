@@ -4,9 +4,10 @@ import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
-
+import { useNavigate } from 'react-router-dom';
 const CommunityDetail = () => {
     let {communityNo} = useParams();
+    let navigator = useNavigate();
     const [communityDetail,setCommunityDetail] = useState([]);
 
     useEffect (()=>{

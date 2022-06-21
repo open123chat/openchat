@@ -30,7 +30,7 @@
     <delete id="communityDelete" parameterType="long">
         <![CDATA[
             delete from community where communityNo=#{communityNo};
-        ]]]>
+        ]]>
     </delete>
 
 
