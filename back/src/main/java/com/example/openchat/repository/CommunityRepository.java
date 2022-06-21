@@ -38,4 +38,13 @@ public class CommunityRepository {
             return 2;
         }
     }
+    //커뮤니티 삭제
+    public int communityDelete(Long communityNo){
+        int result = sqlSession.insert("community.communityDelete",communityNo);
+        if(result == 1 ){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
 }

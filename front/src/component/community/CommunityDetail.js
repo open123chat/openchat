@@ -1,3 +1,4 @@
+import { Button } from 'bootstrap';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router';
@@ -41,6 +42,44 @@ const CommunityDetail = () => {
         fetchfun();
     }, []) //end useEffect
 
+    //삭제 onClick 이벤트
+    const communityDelete = () =>{
+        if(localStorage.getItem('userNo')==communityDetail.userNo){
+            const fetchfun = async() =>{
+                await fetch("http://localhost:8080/api/community/"+communityNo,{
+                    method:"DELETE",
+                    headers:{
+                        'Authorization':localStorage.getItem('Authorization'),
+                        'Content-Type':'application/json',
+                        'Accept':'application/json'
+                    },
+                    body:null
+                })
+                .then((res)=>{
+                    if(res.status===204){
+                        return res;
+                    }else{
+                        return null;
+                    }
+                })
+                .then((res)=>{
+                    if(res!=null){
+                        navigator("/community")
+                    }else{
+                        return null;
+                    }
+                })
+            }
+            fetchfun();
+        }else{
+            return null;
+        }
+    }
+
+    //업데이트 onClick 이벤트
+    const communityUpdate = () =>{
+
+    }
     return (
         <SiteLayout>
             <Form style={{padding:'20px', border:'1px solid grey', borderRadius:'10px'}} className="mt-4" >
@@ -60,10 +99,21 @@ const CommunityDetail = () => {
                     </div>    
                     </div>
                     <div>
-                        댓글 준비중
+                        댓글 준비중 - {communityDetail.userNo}
                     </div>
                 </Form.Group>
+                
             </Form>
+            {localStorage.getItem('userNo')==communityDetail.userNo
+            ?
+            <div className='mt-3'>
+                <button style={{width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}} onClick={()=>communityUpdate()}>수정</button>
+                <button style={{marginLeft:"10px",width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}} onClick={()=>communityDelete()}>삭제</button>
+            </div>
+            :
+            <></>
+            }
+
         </SiteLayout>
     );
 };

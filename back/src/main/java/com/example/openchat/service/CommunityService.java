@@ -33,4 +33,9 @@ public class CommunityService {
     public int CommunityWrite(CommunityVo communityVo){
         return communityRepository.CommunityWrite(communityVo);
     }
+
+    //커뮤니티 삭제
+    public int communityDelete(Long communityNo){
+        return communityRepository.communityDelete(communityNo);
+    }
 }
