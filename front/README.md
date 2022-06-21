@@ -18,3 +18,9 @@
  ### jwt토큰 decode
  - npm i jwt-decode
  https://www.npmjs.com/package/jwt-decode
+
+ ### Draft.js
+ - npm i styled-components
+ - npm i react-draft-wysiwyg draft-js
+ Edit div태그 안 editorState상태 값을 Html 값으로 변환 라이브러리
+ - npm i draftjs-to-html

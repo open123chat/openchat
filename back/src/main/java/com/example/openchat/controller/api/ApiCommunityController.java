@@ -29,7 +29,7 @@ public class ApiCommunityController {
     // 커뮤니티 상세보기
     @GetMapping("/{communityNo}")
     public ResponseEntity findCommunity(@PathVariable Long communityNo) {
-        System.out.println("김행운 언젠간 복수한다");
+        System.out.println("커뮤니티 상세보기 Controller 요청");
         return new ResponseEntity<>(communityService.findCommunity(communityNo), HttpStatus.OK);
     }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
 import CommunityItem from './CommunityItem';
@@ -39,6 +39,18 @@ const Community = () => {
             <div >
                 <h2 style={{marginTop:'30px'}}>Community</h2>
             </div>
+            <Card>
+                <Card.Header>
+                    <Nav variant="tabs" defaultActiveKey="#first">
+                    <Nav.Item>
+                        <Nav.Link to="/community">전체 게시물</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link to="/mycommunity">내 게시물</Nav.Link>
+                    </Nav.Item>
+                    </Nav>
+                </Card.Header>
+            </Card>
             <div style={{height:'80%', width:'100%'}}>
                 <table style={{width:'100%'}}>
                     <thead>
