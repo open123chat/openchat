@@ -5,6 +5,8 @@ import SiteLayout from '../../layout/SiteLayout';
 import CommunityItem from './CommunityItem';
 const Community = () => {
     const [communityList,setCommunityList] =useState([]);
+    const [communityAllandMy,setCommunityAllandMy] = useState(true);
+    const [communityMyList,setCommunityMyList] = useState([]);
     useEffect(()=>{
         console.log("커뮤니티 dom 실행됨")
         // fetch("http://localhost:8080/api/community/list")
@@ -26,7 +28,7 @@ const Community = () => {
                 .then(res=>{
                     console.log('list 값',res);
                     setCommunityList(res);
-                    
+                    setCommunityAllandMy(true);
                 })
         };
         data();
@@ -34,6 +36,31 @@ const Community = () => {
 
     },[]); //end useEffect
 
+    const AllCommunity = () =>{
+        setCommunityAllandMy(true);
+    }
+    const MyCommunity = () =>{
+        const MyData = async () =>{
+            await fetch("http://localhost:8080/api/community/mylist/"+localStorage.getItem('username'),{
+                method:"GET",
+                headers:{
+                    'Authorization':localStorage.getItem('Authorization'),
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                
+                body:null                
+            })
+            .then(res=>res.json())
+            .then(res=>{
+                console.log('list 값',res);
+                setCommunityMyList(res);
+                setCommunityAllandMy(false);
+            })
+        }
+        MyData();
+        
+    }
     return (
         <SiteLayout>
             <div >
@@ -43,10 +70,10 @@ const Community = () => {
                 <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="#first">
                     <Nav.Item>
-                        <Nav.Link to="/community">전체 게시물</Nav.Link>
+                        <Nav.Link href="" onClick={()=>{AllCommunity()}}>전체 게시물</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link to="/mycommunity">내 게시물</Nav.Link>
+                        <Nav.Link href="" onClick={()=>{MyCommunity()}}>내 게시물</Nav.Link>
                     </Nav.Item>
                     </Nav>
                 </Card.Header>
@@ -62,7 +89,13 @@ const Community = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {communityList.map(community=><CommunityItem key={community.communityNo} community={community}/>)}
+                        {
+                            communityAllandMy === true
+                            ?
+                            communityList.map(community=><CommunityItem key={community.communityNo} community={community}/>)
+                            :
+                            communityMyList.map(community=><CommunityItem key={community.communityNo} community={community}/>)
+                        }
                     </tbody>
                 </table>
             </div>

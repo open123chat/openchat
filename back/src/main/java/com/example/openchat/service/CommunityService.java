@@ -17,6 +17,12 @@ public class CommunityService {
         List<CommunityVo> communityList= communityRepository.CommunityList();
         return communityList;
     }
+    // 내커뮤니티 리스트
+    public List<CommunityVo> communityMyList(String username){
+        List<CommunityVo> communityMyList = communityRepository.communityMyList(username);
+        System.out.println("내 커뮤니티 리스트 : "+communityMyList);
+        return communityMyList;
+    }
 
     // 커뮤니티 상세보기
     public CommunityVo findCommunity(Long communityNo) {

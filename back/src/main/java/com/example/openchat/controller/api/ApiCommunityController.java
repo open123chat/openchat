@@ -26,6 +26,12 @@ public class ApiCommunityController {
         return new ResponseEntity<>(communityService.CommunityList(),HttpStatus.OK);
     }
 
+    //내 커뮤니티 리스트
+    @GetMapping("/mylist/{username}")
+    public ResponseEntity communityMyList(@PathVariable String username){
+        System.out.println("내커뮤니티 list 주소 요청");
+        return new ResponseEntity<>(communityService.communityMyList(username),HttpStatus.OK);
+    }
     // 커뮤니티 상세보기
     @GetMapping("/{communityNo}")
     public ResponseEntity findCommunity(@PathVariable Long communityNo) {
@@ -36,7 +42,6 @@ public class ApiCommunityController {
     //커뮤니티 작성
     @PostMapping("/write")
     public ResponseEntity CommunityWrite(@RequestBody CommunityVo communityVo){
-        System.out.println("ㅠㅠ");
         System.out.println("커뮤니티 쓰기 Data : " + communityVo);
         return new ResponseEntity<>(communityService.CommunityWrite(communityVo),HttpStatus.CREATED);
     }

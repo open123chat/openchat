@@ -18,6 +18,11 @@ public class CommunityRepository {
         List<CommunityVo> communityList = sqlSession.selectList("community.communityList");
         return communityList;
     }
+    //내 커뮤니티 리스트
+    public List<CommunityVo> communityMyList(String username){
+        List<CommunityVo> communityList = sqlSession.selectList("community.communityMyList",username);
+        return communityList;
+    }
 
     // 커뮤니티 상세보기
     public CommunityVo findCommunity(Long communityNo) {

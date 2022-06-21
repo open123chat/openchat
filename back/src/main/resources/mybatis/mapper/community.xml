@@ -16,6 +16,12 @@
             select c.communityNo as communityNo,c.userNo as userNo, c.communityTitle as communityTitle, date_format(c.communityDate, '%Y-%m-%d') as communityDate, u.username from community as c join user as u on c.userNo = u.userNo order by communityNo Desc;
         ]]>
     </select>
+
+    <select id="communityMyList" parameterType="String" resultType="communityVo">
+        <![CDATA[
+             select c.communityNo as communityNo,c.userNo as userNo, c.communityTitle as communityTitle, date_format(c.communityDate, '%Y-%m-%d') as communityDate, u.username from community as c join user as u on c.userNo = u.userNo  where u.username = #{username} order by communityNo Desc;
+        ]]>
+    </select>
     <select id="communityDetail" resultType="communityVo">
         <![CDATA[
             select c.communityNo as communityNo,c.userNo as userNo, c.communityTitle as communityTitle,c.communityContent as communityContent, date_format(c.communityDate, '%Y-%m-%d') as communityDate, u.username from community as c join user as u on c.userNo = u.userNo where c.communityNo = #{communityNo};
