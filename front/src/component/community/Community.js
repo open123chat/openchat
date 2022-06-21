@@ -7,7 +7,7 @@ const Community = () => {
     const [communityList,setCommunityList] =useState([]);
     const [communityAllandMy,setCommunityAllandMy] = useState(true);
     const [communityMyList,setCommunityMyList] = useState([]);
-    useEffect(()=>{
+    useEffect( ()=>{
         console.log("커뮤니티 dom 실행됨")
         // fetch("http://localhost:8080/api/community/list")
         // .then(res=>res.json())
