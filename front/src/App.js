@@ -10,6 +10,7 @@ import Community from "./component/community/Community"
 import Notice from "./component/notice/Notice"
 import CommunityWrite from "./component/community/CommunityWrite";
 import CommunityDetail from "./component/community/CommunityDetail";
+import CommunityUpdate from "./component/community/CommunityUpdate";
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
           <Route path="/communityWrite" element={<CommunityWrite/>}/>
           <Route path="/community/:communityNo" element={<CommunityDetail/>}/>
           <Route path="/notice" element={<Notice />} />
+          <Route path="/community/update/:communityNo" element={<CommunityUpdate />} />
+          
       </Routes>
     </Router>
     );

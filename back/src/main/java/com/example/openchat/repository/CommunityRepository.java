@@ -47,4 +47,14 @@ public class CommunityRepository {
             return 2;
         }
     }
+
+    //커뮤니티 수정
+    public int communityUpdate(CommunityVo communityVo){
+        int result = sqlSession.update("community.communityUpdate",communityVo);
+        if(result == 1 ){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
 }

@@ -77,10 +77,6 @@ const CommunityDetail = () => {
         }
     }
 
-    //업데이트 onClick 이벤트
-    const communityUpdate = () =>{
-
-    }
     return (
         <SiteLayout>
             <Form style={{padding:'20px', border:'1px solid grey', borderRadius:'10px'}} className="mt-4" >
@@ -108,7 +104,7 @@ const CommunityDetail = () => {
             {localStorage.getItem('userNo')==communityDetail.userNo
             ?
             <div className='mt-3'>
-                <button style={{width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}} onClick={()=>communityUpdate()}>수정</button>
+                <Link to ={"/community/update/"+communityNo}><button style={{width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}}>수정</button></Link>
                 <button style={{marginLeft:"10px",width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}} onClick={()=>communityDelete()}>삭제</button>
             </div>
             :

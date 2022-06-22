@@ -27,11 +27,18 @@
             select c.communityNo as communityNo,c.userNo as userNo, c.communityTitle as communityTitle,c.communityContent as communityContent, c.communityDate as communityDate, u.username from community as c join user as u on c.userNo = u.userNo where c.communityNo = #{communityNo};
         ]]>
     </select>
+
+    <!--커뮤니티 삭제-->
     <delete id="communityDelete" parameterType="long">
         <![CDATA[
             delete from community where communityNo=#{communityNo};
         ]]>
     </delete>
 
-
+    <!--커뮤니티 수정-->
+    <update id="communityUpdate" parameterType="communityVo">
+        <![CDATA[
+            update community set communityTitle = #{communityTitle}, communityContent = #{communityContent}, communityDate = now()  where communityNo = #{communityNo};
+        ]]>
+    </update>
 </mapper>

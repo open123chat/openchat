@@ -38,4 +38,9 @@ public class CommunityService {
     public int communityDelete(Long communityNo){
         return communityRepository.communityDelete(communityNo);
     }
+
+    //커뮤니티 수정
+    public int communityUpdate(CommunityVo communityVo){
+        return communityRepository.communityUpdate(communityVo);
+    }
 }

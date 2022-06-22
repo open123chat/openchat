@@ -53,7 +53,7 @@ public class ApiCommunityController {
 
     //커뮤니티 삭제
     @DeleteMapping("/{communityNo}")
-    public ResponseEntity CommunityWrite(@PathVariable Long communityNo){
+    public ResponseEntity communityWrite(@PathVariable Long communityNo){
         System.out.println("커뮤니티 삭제 요청 들어옴 : "+communityNo);
         int result = communityService.communityDelete(communityNo);
         if(result == 1){
@@ -63,5 +63,16 @@ public class ApiCommunityController {
         }
     }
 
-
+    //커뮤니티 수정
+    @PutMapping("/{communityNo}")
+    public ResponseEntity communityUpdate(@PathVariable Long communityNo, @RequestBody CommunityVo communityVo){
+        System.out.println("커뮤니티 수정 요청 들어옴 : "+communityNo+" : " +communityVo );
+        communityVo.setCommunityNo(communityNo);
+        int result = communityService.communityUpdate(communityVo);
+        if(result == 1){
+            return new ResponseEntity<>(result,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+        }
+    }
 }
