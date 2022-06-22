@@ -76,11 +76,42 @@ const CommunityDetail = () => {
             return null;
         }
     }
+    //댓글 목록 
     const replyOn = () =>{
         if(replyState===false){
             setReplyState(true)
         }else{
             setReplyState(false)
+        }
+    }
+    //댓글 상태
+    const [replyInfo,setReplyInfo] = useState([]);
+    const changeValue = (e) =>{
+        setReplyInfo({
+            ...replyInfo,
+            [e.target.name]:e.target.value
+        });
+    } 
+    //댓글 작성
+    const replyWrite = () =>{
+        const data ={
+            replyContent:replyInfo.replyContent,
+            userNo:localStorage.getItem('userNo')
+        }
+        console.log('댓글 작성 data',data);
+        
+        const fetchfun = async() =>{
+            await fetch("http://localhost:8080/api/community/"+communityNo+"/reply",{
+                method:"POST",
+                headers:{
+                    'Authorization':localStorage.getItem('Authorization'),
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            .then()
+            .then()
         }
     }
     return (
@@ -112,8 +143,8 @@ const CommunityDetail = () => {
                                 <div>
                                     유저 이름
                                 </div>
-                                    <input/>
-                                    <button style={{marginLeft:'10px'}}>작성</button>
+                                    <input type="text" name="replyContent" onChange={changeValue}/>
+                                    <button style={{marginLeft:'10px'}} type="button" onClick={()=>{replyWrite()}}>작성</button>
                             </div>
                         }
 

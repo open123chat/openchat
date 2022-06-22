@@ -16,7 +16,7 @@ const Login = (props) => {
     const userJoin = () => {
         console.log('유저 회원가입 정보 : ',userObj);
         
-        const fetchfun = async() => {
+        const fetchfun = async( ) => {
             const response = await fetch("http://localhost:8080/api/user/join",{
                 method:"POST",
                 headers:{
