@@ -9,7 +9,7 @@ const CommunityDetail = () => {
     let {communityNo} = useParams();
     let navigator = useNavigate();
     const [communityDetail,setCommunityDetail] = useState([]);
-
+    const [replyState,setReplyState] = useState(false);
     useEffect (()=>{
         console.log("========상세보기=======")
         console.log("게시물 no : ",communityNo)
@@ -76,7 +76,13 @@ const CommunityDetail = () => {
             return null;
         }
     }
-
+    const replyOn = () =>{
+        if(replyState===false){
+            setReplyState(true)
+        }else{
+            setReplyState(false)
+        }
+    }
     return (
         <SiteLayout>
             <Form style={{padding:'20px', border:'1px solid grey', borderRadius:'10px'}} className="mt-4" >
@@ -96,7 +102,21 @@ const CommunityDetail = () => {
                     </div>    
                     </div>
                     <div>
-                        댓글 준비중 - {communityDetail.userNo}
+                        <button onClick={()=>{replyOn()}} type="button">댓글 보기 - {communityDetail.userNo}</button>
+                        {
+                            replyState == false 
+                            ?
+                            null
+                            :
+                            <div>
+                                <div>
+                                    유저 이름
+                                </div>
+                                    <input/>
+                                    <button style={{marginLeft:'10px'}}>작성</button>
+                            </div>
+                        }
+
                     </div>
                 </Form.Group>
                 
