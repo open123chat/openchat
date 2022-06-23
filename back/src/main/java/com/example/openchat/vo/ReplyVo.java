@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class ReplyVo {
-    private Long replyNo;
-    private Long communityNo;
-    private Long userNo;
-    private String replyContent;
-    private Long position;
-    private Long depth;
-    private String regDate;
+    private Long replyNo; //댓글 No
+    private Long communityNo; // 커뮤니티 No
+    private Long userNo; //댓글 작성자 user No
+    private String replyContent; //댓글 내용
+    private Long position; // 부모 깊이
+    private Long depth; // 대댓글 시 깊이.
+    private String regDate; // 댓글 생성 날짜
 
 }
