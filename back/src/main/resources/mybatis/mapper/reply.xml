@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reply">
-    <select id="findByMaxPosition">
+    <select id="findByMaxPosition" resultType="int">
         <![CDATA[
-            select max(position) from reply;
+            select max(position) as position from reply;
         ]]>
     </select>
+
 
 </mapper>

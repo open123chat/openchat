@@ -1,6 +1,7 @@
 package com.example.openchat.service;
 
 import com.example.openchat.repository.ReplyRepository;
+import com.example.openchat.vo.ReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class ReplyService {
         return replyRepository.fingByMaxPosition();
     }
     //댓글 작성
-    public void replyWrite(){
-        replyRepository.replyWrite();
+    public int replyWrite(ReplyVo replyVo){
+        return replyRepository.replyWrite(replyVo);
     }
 }

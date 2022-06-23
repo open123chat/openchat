@@ -100,19 +100,20 @@ const CommunityDetail = () => {
         }
         console.log('댓글 작성 data',data);
         
-        // const fetchfun = async() =>{
-        //     await fetch("http://localhost:8080/api/community/"+communityNo+"/reply",{
-        //         method:"POST",
-        //         headers:{
-        //             'Authorization':localStorage.getItem('Authorization'),
-        //             'Content-Type':'application/json',
-        //             'Accept':'application/json'
-        //         },
-        //         body:JSON.stringify(data)
-        //     })
-        //     .then()
-        //     .then()
-        // }
+        const fetchfun = async() =>{
+            await fetch("http://localhost:8080/api/reply/"+communityNo,{
+                method:"POST",
+                headers:{
+                    'Authorization':localStorage.getItem('Authorization'),
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            .then()
+            .then()
+        }
+        fetchfun();
     }
     return (
         <SiteLayout>

@@ -1,5 +1,6 @@
 package com.example.openchat.repository;
 
+import com.example.openchat.vo.ReplyVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,10 +13,16 @@ public class ReplyRepository {
 
     // Max Position
     public int fingByMaxPosition(){
-        return sqlSession.selectOne("reply.findByMaxPosition");
+        Integer result = sqlSession.selectOne("reply.findByMaxPosition");
+        return result == null ? 0 : result;
     }
     //댓글 작성
-    public void replyWrite(){
-
+    public int replyWrite(ReplyVo replyVo){
+        int result = sqlSession.insert("reply.replyWrite",replyVo);
+        if(result == 1){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 }
