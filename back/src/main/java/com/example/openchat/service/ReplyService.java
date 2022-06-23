@@ -5,6 +5,8 @@ import com.example.openchat.vo.ReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReplyService {
 
@@ -25,5 +27,10 @@ public class ReplyService {
     //댓글 작성
     public int replyWrite(ReplyVo replyVo){
         return replyRepository.replyWrite(replyVo);
+    }
+
+    //댓글 리스트
+    public List<ReplyVo> replyList(Long communityNo){
+        return replyRepository.replyList(communityNo);
     }
 }

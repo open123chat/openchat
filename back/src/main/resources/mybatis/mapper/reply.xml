@@ -14,4 +14,7 @@
         ]]>
     </insert>
 
+    <select id="replyList" parameterType="long" resultType="replyVo">
+        select r.replyNo as replyNo, r.communityNo as communityNo, r.userNo as userNo, u.username as username, r.replyContent as replyContent, r.position as position, r.depth as depth, r.regDate as regDate from reply as r join user u on r.userNo = u.userNo where r.communityNo= #{communityNo};
+    </select>
 </mapper>

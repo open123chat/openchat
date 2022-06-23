@@ -5,6 +5,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ReplyRepository {
 
@@ -24,5 +26,10 @@ public class ReplyRepository {
         }else{
             return 2;
         }
+    }
+    //댓글 리스트
+    public List<ReplyVo> replyList(Long communityNo){
+        List<ReplyVo> replyList = sqlSession.selectList("reply.replyList",communityNo);
+        return replyList;
     }
 }

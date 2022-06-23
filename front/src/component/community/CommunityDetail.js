@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
 import { useNavigate } from 'react-router-dom';
+import ReplyItem from './ReplyItem';
 const CommunityDetail = () => {
     let {communityNo} = useParams();
     let navigator = useNavigate();
@@ -80,7 +81,33 @@ const CommunityDetail = () => {
     const [replyList,setReplyList]=useState([]);
     const replyOn = () =>{
         if(replyState===false){
-
+            
+            const replyData = async() => {
+                await fetch("http://localhost:8080/api/reply/"+communityNo,{
+                    method:"GET",
+                    headers:{
+                        'Authorization':localStorage.getItem('Authorization'),
+                        'Content-Type':'application/json',
+                        'Accept':'application/json'
+                    },
+                    body:null
+                })
+                .then((res)=>{
+                    if(res.status===200){
+                        return res.json();
+                    }else{
+                        return null;
+                    }
+                })
+                .then((res)=>{
+                    if(res != null){
+                        console.log("======댓글리스트======",res);
+                        setReplyState(true);
+                        setReplyList(res);
+                    }
+                })
+            }
+            replyData();
         }else{
             setReplyState(false)
         }
@@ -159,7 +186,12 @@ const CommunityDetail = () => {
                                 </div>
                                     <input type="text" name="replyContent" onChange={changeValue}/>
                                     <button style={{marginLeft:'10px'}} type="button" onClick={()=>{replyWrite()}}>작성</button>
+                                <div>
+                                    댓글 목록
+                                    {replyList.map(reply=><ReplyItem key = {reply.replyNo} reply={reply}/>)}
+                                </div>
                             </div>
+                            
                         }
 
                     </div>

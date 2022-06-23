@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/api/reply")
@@ -29,5 +26,12 @@ public class ApiReplyContorller {
         }else{
             return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
         }
+    }
+
+    //댓글 리스트
+    @GetMapping("/{communityNo}")
+    public ResponseEntity replyList(@PathVariable Long communityNo){
+        System.out.println("댓글 리스트 요청 들어옴 : "+ communityNo);
+        return new ResponseEntity<>(replyService.replyList(communityNo),HttpStatus.OK);
     }
 }
