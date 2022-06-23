@@ -22,15 +22,8 @@ public class ApiReplyContorller {
     @PostMapping("/{communityNo}")
     public ResponseEntity replyWrite(@PathVariable Long communityNo, @RequestBody ReplyVo replyVo){
         System.out.println("댓글 Request 정보 :"+ communityNo+" : "+replyVo);
-        int Maxresult = replyService.fingByMaxPosition();
-        System.out.println("MaxPosition : "+Maxresult);
-        Long MaxPosition = Long.valueOf(Maxresult + 1);
-        System.out.println("Long MaxPosition : "+MaxPosition);
-        replyVo.setPosition(MaxPosition);
-        replyVo.setDepth(1L);
-        replyVo.setCommunityNo(communityNo);
-        System.out.println("댓글 작성 Vo : "+replyVo);
-        int result = replyService.replyWrite(replyVo);
+        ReplyVo replyVo2 = replyService.fingByMaxPosition(communityNo,replyVo);
+        int result = replyService.replyWrite(replyVo2);
         if(result == 1){
             return new ResponseEntity<>(result, HttpStatus.CREATED);
         }else{

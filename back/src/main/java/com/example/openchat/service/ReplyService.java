@@ -12,8 +12,15 @@ public class ReplyService {
     private ReplyRepository replyRepository;
 
     // Max Position
-    public int fingByMaxPosition(){
-        return replyRepository.fingByMaxPosition();
+    public ReplyVo fingByMaxPosition(Long communityNo, ReplyVo replyVo){
+        int Maxresult = replyRepository.fingByMaxPosition();
+        System.out.println("MaxPosition : "+Maxresult);
+        Long MaxPosition = Long.valueOf(Maxresult + 1);
+        System.out.println("Long MaxPosition : "+MaxPosition);
+        replyVo.setPosition(MaxPosition);
+        replyVo.setDepth(1L);
+        replyVo.setCommunityNo(communityNo);
+        return replyVo;
     }
     //댓글 작성
     public int replyWrite(ReplyVo replyVo){

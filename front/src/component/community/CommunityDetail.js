@@ -77,9 +77,10 @@ const CommunityDetail = () => {
         }
     }
     //댓글 목록 
+    const [replyList,setReplyList]=useState([]);
     const replyOn = () =>{
         if(replyState===false){
-            setReplyState(true)
+
         }else{
             setReplyState(false)
         }
@@ -110,8 +111,20 @@ const CommunityDetail = () => {
                 },
                 body:JSON.stringify(data)
             })
-            .then()
-            .then()
+            .then((res)=>{
+                if(res.status===201){
+                    return res;
+                }else{
+                    return null;
+                }
+            })
+            .then((res)=>{
+                if(res != null){
+                    navigator("/community/"+communityNo);
+                }else{
+                    alert("댓글 작성 실패했습니다.")
+                }
+            })
         }
         fetchfun();
     }

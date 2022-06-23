@@ -8,5 +8,10 @@
         ]]>
     </select>
 
+    <insert id="replyWrite" parameterType="replyVo">
+        <![CDATA[
+            insert into reply(communityNo, userNo, replyContent, position, depth, regDate) values(#{communityNo}, #{userNo}, #{replyContent}, #{position}, #{depth}, now());
+        ]]>
+    </insert>
 
 </mapper>
