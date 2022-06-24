@@ -19,12 +19,25 @@ public class ApiReplyContorller {
     @PostMapping("/{communityNo}")
     public ResponseEntity replyWrite(@PathVariable Long communityNo, @RequestBody ReplyVo replyVo){
         System.out.println("댓글 Request 정보 :"+ communityNo+" : "+replyVo);
-        ReplyVo replyVo2 = replyService.fingByMaxPosition(communityNo,replyVo);
-        int result = replyService.replyWrite(replyVo2);
-        if(result == 1){
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
-        }else{
-            return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+
+        if(replyVo.getPosition()!=null && replyVo.getDepth() < 3){
+            //대댓글 작성
+            System.out.println("대댓글 Controller");
+            int result = replyService.reReplyWrite(communityNo, replyVo);
+            if (result == 1) {
+                return new ResponseEntity<>(result, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+            }
+        }else {
+            //댓글 작성
+            ReplyVo replyVo2 = replyService.fingByMaxPosition(communityNo, replyVo);
+            int result = replyService.replyWrite(replyVo2);
+            if (result == 1) {
+                return new ResponseEntity<>(result, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+            }
         }
     }
 

@@ -11,6 +11,7 @@ const CommunityDetail = () => {
     let navigator = useNavigate();
     const [communityDetail,setCommunityDetail] = useState([]);
     const [replyState,setReplyState] = useState(false);
+    const [replyCreate,setReplyCreate] = useState(false);
     useEffect (()=>{
         console.log("========상세보기=======")
         console.log("게시물 no : ",communityNo)
@@ -81,12 +82,12 @@ const CommunityDetail = () => {
     const [replyList,setReplyList]=useState([]);
     const replyOn = () =>{
         if(replyState===false){
-            
+
             const replyData = async() => {
                 await fetch("http://localhost:8080/api/reply/"+communityNo,{
                     method:"GET",
                     headers:{
-                        'Authorization':localStorage.getItem('Authorization'),
+                        
                         'Content-Type':'application/json',
                         'Accept':'application/json'
                     },
@@ -121,6 +122,7 @@ const CommunityDetail = () => {
         });
     } 
     //댓글 작성
+    
     const replyWrite = () =>{
         const data ={
             replyContent:replyInfo.replyContent,
@@ -147,7 +149,8 @@ const CommunityDetail = () => {
             })
             .then((res)=>{
                 if(res != null){
-                    navigator("/community/"+communityNo);
+                        setReplyInfo([]);
+                        navigator("/community/"+communityNo);
                 }else{
                     alert("댓글 작성 실패했습니다.")
                 }
@@ -188,7 +191,7 @@ const CommunityDetail = () => {
                                     <button style={{marginLeft:'10px'}} type="button" onClick={()=>{replyWrite()}}>작성</button>
                                 <div>
                                     댓글 목록
-                                    {replyList.map(reply=><ReplyItem key = {reply.replyNo} reply={reply}/>)}
+                                    {replyList.map(reply=><ReplyItem key = {reply.replyNo} reply={reply} />)}
                                 </div>
                             </div>
                             

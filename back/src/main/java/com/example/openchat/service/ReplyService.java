@@ -33,4 +33,11 @@ public class ReplyService {
     public List<ReplyVo> replyList(Long communityNo){
         return replyRepository.replyList(communityNo);
     }
+    //대댓글 작성
+    public int reReplyWrite(Long communityNo, ReplyVo replyVo){
+        replyVo.setCommunityNo(communityNo);
+        replyVo.setDepth(2L);
+        return replyRepository.replyWrite(replyVo);
+
+    }
 }
