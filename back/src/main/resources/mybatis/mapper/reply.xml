@@ -25,6 +25,11 @@
             delete from reply where replyNo = #{replyNo};
         ]]>
     </delete>
+    <delete id="parentReplyDelete" parameterType="long">
+        <![CDATA[
+            delete from reply where position = #{position};
+        ]]>
+    </delete>
 
 
 </mapper>

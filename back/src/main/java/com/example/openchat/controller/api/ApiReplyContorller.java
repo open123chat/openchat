@@ -50,13 +50,27 @@ public class ApiReplyContorller {
 
     //댓글 삭제
     @DeleteMapping("/{replyNo}")
-    public ResponseEntity replyDelete(@PathVariable Long replyNo){
-        System.out.println("댓글 삭제 : "+ replyNo);
-        int result = replyService.replyDelete(replyNo);
-        if(result == 1){
-            return new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
+    public ResponseEntity replyDelete(@PathVariable Long replyNo ,@RequestBody ReplyVo replyVo){
+        System.out.println("댓글 삭제 : "+ replyNo+" : "+replyVo);
+        if(replyVo.getDepth() == 1){
+            //모 댓글 삭제
+            System.out.println("모 댓글 삭제");
+            int result = replyService.replyDelete(replyVo);
+            if(result == 1){
+                return new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
+            }else{
+                return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+            }
         }else{
-            return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+            //대댓글 삭제
+            System.out.println("대댓글 삭제");
+            int result = replyService.replyDelete(replyNo);
+            if(result == 1){
+                return new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
+            }else{
+                return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+            }
         }
+
     }
 }

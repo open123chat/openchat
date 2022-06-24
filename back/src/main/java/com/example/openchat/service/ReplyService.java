@@ -45,4 +45,9 @@ public class ReplyService {
     public int replyDelete(Long replyNo){
         return replyRepository.replyDelete(replyNo);
     }
+    //모 댓글 삭제
+    public int replyDelete(ReplyVo replyVo){
+        Long position = replyVo.getPosition();
+        return replyRepository.parentReplyDelete(position);
+    }
 }

@@ -42,4 +42,13 @@ public class ReplyRepository {
             return 2;
         }
     }
+    // 모 댓글 삭제
+    public int parentReplyDelete(Long position){
+        int result = sqlSession.delete("reply.parentReplyDelete",position);
+        if(result == 1){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
 }

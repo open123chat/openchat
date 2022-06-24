@@ -4,6 +4,8 @@ const ReplyItem = (props) => {
     const {replyNo,communityNo,username,replyContent,position,depth,regDate}=props.reply;
     const [reReplyState,setReReplyState] = useState(false);
     let navigator = useNavigate();
+    const [parentReplyState,setParentReplyState]= useState(false);
+
     //댓글 상태
     const [replyInfo,setReplyInfo] = useState([]);
     const changeValue = (e) =>{
@@ -60,7 +62,13 @@ const ReplyItem = (props) => {
 
     const replyDelete = () =>{
         console.log('삭제 클릭 : ',replyNo)
+        const data = {
+            position : position,
+            depth : depth
+        }
+        console.log('삭제 body ',data);
         const fetchfun = async() =>{
+
             await fetch("http://localhost:8080/api/reply/"+replyNo,{
                 method:"DELETE",
                 headers:{
@@ -68,7 +76,7 @@ const ReplyItem = (props) => {
                     'Content-Type':'application/json',
                     'Accept':'application/json'
                 },
-                body:null
+                body:JSON.stringify(data)
             })
             .then((res)=>{
                 if(res.status===204){
