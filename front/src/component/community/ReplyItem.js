@@ -58,6 +58,35 @@ const ReplyItem = (props) => {
         fetchfun();
     }
 
+    const replyDelete = () =>{
+        console.log('삭제 클릭 : ',replyNo)
+        const fetchfun = async() =>{
+            await fetch("http://localhost:8080/api/reply/"+replyNo,{
+                method:"DELETE",
+                headers:{
+                    'Authorization':localStorage.getItem('Authorization'),
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:null
+            })
+            .then((res)=>{
+                if(res.status===204){
+                    return res;
+                }else{
+                    return null;
+                }
+            })
+            .then((res)=>{
+                if(res!=null){
+                    navigator("/community/"+communityNo)
+                }else{
+                    return null;
+                }
+            })
+        }
+        fetchfun();
+    }
     return (
         <div>
         {
@@ -75,7 +104,7 @@ const ReplyItem = (props) => {
              ?
              <div style={{marginTop:'-3px'}}>
                  <button style={{ marginLeft:'20px', border:'0px', backgroundColor:'white',color:'grey'}}>수정</button>
-                 <button style={{ marginLeft:'20px', border:'0px', backgroundColor:'white',color:'grey'}}>삭제</button>
+                 <button style={{ marginLeft:'20px', border:'0px', backgroundColor:'white',color:'grey'}} type='button' onClick={()=>{replyDelete()}}>삭제</button>
              </div>
              :
               null
@@ -112,7 +141,7 @@ const ReplyItem = (props) => {
              ?
              <div style={{marginTop:'-3px'}}>
                  <button style={{ marginLeft:'20px', border:'0px', backgroundColor:'white',color:'grey'}}>수정</button>
-                 <button style={{ marginLeft:'20px', border:'0px', backgroundColor:'white',color:'grey'}}>삭제</button>
+                 <button style={{ marginLeft:'20px', border:'0px', backgroundColor:'white',color:'grey'}}type='button' onClick={()=>{replyDelete()}}>삭제</button>
              </div>
              :
               null

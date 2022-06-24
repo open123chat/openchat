@@ -40,4 +40,9 @@ public class ReplyService {
         return replyRepository.replyWrite(replyVo);
 
     }
+
+    //댓글 삭제
+    public int replyDelete(Long replyNo){
+        return replyRepository.replyDelete(replyNo);
+    }
 }

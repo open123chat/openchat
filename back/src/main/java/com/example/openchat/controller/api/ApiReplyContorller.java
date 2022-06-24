@@ -47,4 +47,16 @@ public class ApiReplyContorller {
         System.out.println("댓글 리스트 요청 들어옴 : "+ communityNo);
         return new ResponseEntity<>(replyService.replyList(communityNo),HttpStatus.OK);
     }
+
+    //댓글 삭제
+    @DeleteMapping("/{replyNo}")
+    public ResponseEntity replyDelete(@PathVariable Long replyNo){
+        System.out.println("댓글 삭제 : "+ replyNo);
+        int result = replyService.replyDelete(replyNo);
+        if(result == 1){
+            return new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+        }
+    }
 }

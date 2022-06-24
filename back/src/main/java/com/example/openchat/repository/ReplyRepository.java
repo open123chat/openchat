@@ -32,4 +32,14 @@ public class ReplyRepository {
         List<ReplyVo> replyList = sqlSession.selectList("reply.replyList",communityNo);
         return replyList;
     }
+
+    //댓글 삭제
+    public int replyDelete(Long replyNo){
+        int result = sqlSession.delete("reply.replyDelete",replyNo);
+        if(result == 1){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
 }

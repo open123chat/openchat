@@ -20,5 +20,11 @@
         ]]>
     </select>
 
+    <delete id="replyDelete" parameterType="long">
+        <![CDATA[
+            delete from reply where replyNo = #{replyNo};
+        ]]>
+    </delete>
+
 
 </mapper>
