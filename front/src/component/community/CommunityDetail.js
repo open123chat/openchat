@@ -177,7 +177,7 @@ const CommunityDetail = () => {
                     </div>    
                     </div>
                     <div>
-                        <button onClick={()=>{replyOn()}} type="button">댓글 보기 - {communityDetail.userNo}</button>
+                        <button onClick={()=>{replyOn()}} type="button">댓글 보기 - {communityDetail.replyCount}</button>
                         {
                             replyState == false 
                             ?

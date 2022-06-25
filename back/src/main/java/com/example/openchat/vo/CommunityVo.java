@@ -10,4 +10,5 @@ public class CommunityVo {
     private String communityContent; //커뮤니티 내용
     private String communityDate; //커뮤니티 생성일
     private String username;// 작성 유저 name
+    private Long replyCount;// 댓글 수
 }
