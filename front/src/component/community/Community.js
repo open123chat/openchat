@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Nav } from 'react-bootstrap';
+import { Button, Card, Form, FormControl, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
 import CommunityItem from './CommunityItem';
@@ -63,8 +63,18 @@ const Community = () => {
     }
     return (
         <SiteLayout>
-            <div >
-                <h2 style={{marginTop:'30px'}}>Community</h2>
+            <div style={{display:'flex',justifyContent:'space-between',marginTop:'30px', marginBottom:'10px'}}>
+                <h2 style={{}}>Community</h2>
+
+                <Form className="d-flex">
+                    <FormControl
+                        type="search"
+                        placeholder="Search"
+                        className="me-2"
+                        aria-label="Search"
+                    />
+                    <Button variant="outline-success">Search</Button>
+            </Form>
             </div>
             <Card>
                 <Card.Header>
@@ -105,7 +115,7 @@ const Community = () => {
                     </tbody>
                 </table>
             </div>
-            <div style={{display:'flex',justifyContent:'flex-end'}}>
+            <div style={{display:'flex',justifyContent:'flex-end', marginTop:'-30px'}}>
                 <Button>
                     {
                     localStorage.getItem('Authorization') ==null
