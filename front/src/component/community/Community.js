@@ -7,6 +7,7 @@ const Community = () => {
     const [communityList,setCommunityList] =useState([]);
     const [communityAllandMy,setCommunityAllandMy] = useState(true);
     const [communityMyList,setCommunityMyList] = useState([]);
+    const [communitySearch,setCommunitySearch] = useState([]);
     useEffect( ()=>{
         console.log("커뮤니티 dom 실행됨")
         // fetch("http://localhost:8080/api/community/list")
@@ -61,6 +62,38 @@ const Community = () => {
         MyData();
         
     }
+
+    //검색
+    const changeValue = (e) => {
+        // editorState에 값 설정
+        console.log('내용 :',e);
+        setCommunitySearch({
+          ...communitySearch,
+          [e.target.name]:e.target.value
+        });
+      };
+      //
+    const communitySearchOnClick = () =>{ 
+        console.log('search 내용 : ',communitySearch.communityTitle);
+        const searchfun = async() =>{
+            await fetch("http://localhost:8080/api/community/"+communitySearch.communityTitle,{
+                method:"GET",
+                headers:{
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                
+                body:null                
+            })
+            .then(res=>res.json())
+            .then(res=>{
+                console.log('list 값',res);
+                setCommunityList(res);
+                setCommunityAllandMy(true);
+            })
+        }
+        
+    }
     return (
         <SiteLayout>
             <div style={{display:'flex',justifyContent:'space-between',marginTop:'30px', marginBottom:'10px'}}>
@@ -72,8 +105,10 @@ const Community = () => {
                         placeholder="Search"
                         className="me-2"
                         aria-label="Search"
+                        name = "communityTitle"
+                        onChange={changeValue}
                     />
-                    <Button variant="outline-success">Search</Button>
+                    <Button variant="outline-success" onClick={()=>{communitySearchOnClick()}}>Search</Button>
             </Form>
             </div>
             <Card>
@@ -126,7 +161,7 @@ const Community = () => {
                     <Link to ="/communityWrite" style={{color:'white', textDecoration:'none'}}>
                     글쓰기</Link>
                     }                   
-                    </Button>
+                </Button>
             </div>
         </SiteLayout>
     );

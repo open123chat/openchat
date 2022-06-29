@@ -58,4 +58,19 @@
             update community set communityTitle = #{communityTitle}, communityContent = #{communityContent}, communityDate = now()  where communityNo = #{communityNo};
         ]]>
     </update>
+
+    <!--커뮤니티 검색-->
+    <select id="communityTitle" parameterType="string">
+        <![CDATA[
+            select c.communityNo as communityNo,c.userNo as userNo, c.communityTitle as communityTitle, date_format(c.communityDate, '%Y-%m-%d') as communityDate, u.username, r.replyCount
+            from community as c join user as u
+            join(select c.communityNo, ifnull(r.replyCount,0) as replyCount
+            from community as c left outer join (select communityNo,count(*)as replyCount from reply group by communityNo) as r
+            on c.communityNo = r.communityNo) as r
+            where c.userNo = u.userNo
+            and c.communityNo = r.communityNo
+            and c.communityTitle Like '%'{communityTitle}'%'
+            order by communityNo Desc;
+        ]]>
+    </select>
 </mapper>

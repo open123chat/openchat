@@ -57,4 +57,8 @@ public class CommunityRepository {
             return 2;
         }
     }
+    //커뮤니티 검색
+    public List<CommunityVo> communitySearch(String communityTitle){
+        return sqlSession.selectList("community.communitySearch",communityTitle);
+    }
 }

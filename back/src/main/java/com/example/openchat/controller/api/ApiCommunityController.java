@@ -75,4 +75,11 @@ public class ApiCommunityController {
             return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
         }
     }
+
+    //커뮤니티 검색
+    @GetMapping("/{communityTitle}")
+    public ResponseEntity communitySearch(@PathVariable String communityTitle){
+        System.out.println("커뮤니티 Search 요청 : "+communityTitle);
+        return new ResponseEntity<>(communityService.communitySearch(communityTitle),HttpStatus.OK);
+    }
 }

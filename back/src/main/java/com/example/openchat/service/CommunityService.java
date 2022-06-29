@@ -43,4 +43,10 @@ public class CommunityService {
     public int communityUpdate(CommunityVo communityVo){
         return communityRepository.communityUpdate(communityVo);
     }
+
+    //커뮤니티 검색
+    public List<CommunityVo> communitySearch(String communityTitle){
+//        List<CommunityVo> communitySearchList =
+        return communityRepository.communitySearch(communityTitle);
+    }
 }
