@@ -151,7 +151,7 @@ const Community = () => {
                             ?
                             communityList.filter(community=>community.communityTitle.indexOf(keyword) != -1).map(community=><CommunityItem key={community.communityNo} community={community}/>)
                             :
-                            communityMyList.map(community=><CommunityItem key={community.communityNo} community={community}/>)
+                            communityMyList.filter(community=>community.communityTitle.indexOf(keyword) != -1).map(community=><CommunityItem key={community.communityNo} community={community}/>)
                         }
                     </tbody>
                 </table>
