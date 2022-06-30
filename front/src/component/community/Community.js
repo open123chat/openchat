@@ -63,53 +63,59 @@ const Community = () => {
         
     }
 
-    //검색
-    const changeValue = (e) => {
-        // editorState에 값 설정
-        console.log('내용 :',e);
-        setCommunitySearch({
-          ...communitySearch,
-          [e.target.name]:e.target.value
-        });
-      };
-      //
-    const communitySearchOnClick = () =>{ 
-        console.log('search 내용 : ',communitySearch.communityTitle);
-        const searchfun = async() =>{
-            await fetch("http://localhost:8080/api/community/"+communitySearch.communityTitle,{
-                method:"GET",
-                headers:{
-                    'Content-Type':'application/json',
-                    'Accept':'application/json'
-                },
+    // //검색
+    // const changeValue = (e) => {
+    //     // editorState에 값 설정
+    //     console.log('내용 :',e);
+    //     setCommunitySearch({
+    //       ...communitySearch,
+    //       [e.target.name]:e.target.value
+    //     });
+    //   };
+    //   //
+    // const communitySearchOnClick = () =>{ 
+    //     console.log('search 내용 : ',communitySearch.communityTitle);
+    //     const searchfun = async() =>{
+    //         await fetch("http://localhost:8080/api/community/"+communitySearch.communityTitle,{
+    //             method:"GET",
+    //             headers:{
+    //                 'Content-Type':'application/json',
+    //                 'Accept':'application/json'
+    //             },
                 
-                body:null                
-            })
-            .then(res=>res.json())
-            .then(res=>{
-                console.log('list 값',res);
-                setCommunityList(res);
-                setCommunityAllandMy(true);
-            })
-        }
+    //             body:null                
+    //         })
+    //         .then(res=>res.json())
+    //         .then(res=>{
+    //             console.log('list 값',res);
+    //             setCommunityList(res);
+    //             setCommunityAllandMy(true);
+    //         })
+    //     }
         
-    }
+    // }
+    
+    //검색
+    const [keyword, setKeyword] = useState('');
+
     return (
         <SiteLayout>
             <div style={{display:'flex',justifyContent:'space-between',marginTop:'30px', marginBottom:'10px'}}>
                 <h2 style={{}}>Community</h2>
 
                 <Form className="d-flex">
-                    <FormControl
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        name = "communityTitle"
-                        onChange={changeValue}
+                    <input
+                        id="search"
+                        name="search"
+                        placeholder="게시물 검색"
+                        value={keyword}
+                        onChange={e => {
+                            let data = e.target.value;
+                            setKeyword(data);
+                        }}
                     />
-                    <Button variant="outline-success" onClick={()=>{communitySearchOnClick()}}>Search</Button>
-            </Form>
+                    {/* <Button variant="outline-success" onClick={()=>{communitySearchOnClick()}}>Search</Button> */}
+                </Form>
             </div>
             <Card>
                 <Card.Header>
@@ -143,7 +149,7 @@ const Community = () => {
                         {
                             communityAllandMy === true
                             ?
-                            communityList.map(community=><CommunityItem key={community.communityNo} community={community}/>)
+                            communityList.filter(community=>community.communityTitle.indexOf(keyword) != -1).map(community=><CommunityItem key={community.communityNo} community={community}/>)
                             :
                             communityMyList.map(community=><CommunityItem key={community.communityNo} community={community}/>)
                         }
