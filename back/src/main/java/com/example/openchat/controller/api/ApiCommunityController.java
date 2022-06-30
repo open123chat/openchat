@@ -76,10 +76,10 @@ public class ApiCommunityController {
         }
     }
 
-    //커뮤니티 검색
-    @GetMapping("/{communityTitle}")
-    public ResponseEntity communitySearch(@PathVariable String communityTitle){
-        System.out.println("커뮤니티 Search 요청 : "+communityTitle);
-        return new ResponseEntity<>(communityService.communitySearch(communityTitle),HttpStatus.OK);
-    }
+//    //커뮤니티 검색
+//    @GetMapping("/{communityTitle}")
+//    public ResponseEntity communitySearch(@PathVariable String communityTitle){
+//        System.out.println("커뮤니티 Search 요청 : "+communityTitle);
+//        return new ResponseEntity<>(communityService.communitySearch(communityTitle),HttpStatus.OK);
+//    }
 }
