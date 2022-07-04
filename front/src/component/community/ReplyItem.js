@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 const ReplyItem = (props) => {
     const {replyNo,communityNo,username,replyContent,position,depth,regDate}=props.reply;
+    const replyLength = props.replyLength;
+    const setReplyLength = props.setReplyLength;
     const [reReplyState,setReReplyState] = useState(false);
     let navigator = useNavigate();
     const [parentReplyState,setParentReplyState]= useState(false);
@@ -24,6 +26,8 @@ const ReplyItem = (props) => {
 
     const reReplyWrite = () =>{
         console.log(communityNo)
+        console.log(replyLength)
+
         const data = {
             userNo:localStorage.getItem('userNo'),
             replyContent: replyInfo.replyContent,
@@ -51,6 +55,8 @@ const ReplyItem = (props) => {
             .then((res)=>{
                 if(res != null){
                         setReplyInfo([]);
+                        setReplyLength(replyLength+1);
+                        setReReplyState(false);
                         navigator("/community/"+communityNo);
                 }else{
                     alert("댓글 작성 실패했습니다.")
@@ -87,7 +93,8 @@ const ReplyItem = (props) => {
             })
             .then((res)=>{
                 if(res!=null){
-                    navigator("/community/"+communityNo)
+                    setReplyLength(replyLength-1);
+                    // navigator("/community/"+communityNo)
                 }else{
                     return null;
                 }

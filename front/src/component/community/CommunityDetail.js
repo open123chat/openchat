@@ -82,42 +82,48 @@ const CommunityDetail = () => {
     const [replyList,setReplyList]=useState([]);
     const replyOn = () =>{
         if(replyState===false){
-
-            const replyData = async() => {
-                await fetch("http://localhost:8080/api/reply/"+communityNo,{
-                    method:"GET",
-                    headers:{
-                        
-                        'Content-Type':'application/json',
-                        'Accept':'application/json'
-                    },
-                    body:null
-                })
-                .then((res)=>{
-                    if(res.status===200){
-                        return res.json();
-                    }else{
-                        return null;
-                    }
-                })
-                .then((res)=>{
-                    if(res != null){
-                        console.log("======댓글리스트======",res);
-                        setReplyState(true);
-                        setReplyList(res);
-                    }
-                })
-            }
-            replyData();
+            setReplyState(true)
         }else{
             setReplyState(false)
         }
     }
+
+    const [replyLength,setReplyLength] = useState(0);
+
+    useEffect(()=>{
+        console.log('댓글 리스트 useEffect')
+        const replyData = async() => {
+            await fetch("http://localhost:8080/api/reply/"+communityNo,{
+                method:"GET",
+                headers:{
+                    
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:null
+            })
+            .then((res)=>{
+                if(res.status===200){
+                    return res.json();
+                }else{
+                    return null;
+                }
+            })
+            .then((res)=>{
+                if(res != null){
+                    console.log("======댓글리스트======", res);
+                    setReplyList(res);
+                    setReplyLength(res.length);
+                }
+            })
+        }
+        replyData();
+    }, [replyLength]);
+    
     //댓글 상태
-    const [replyInfo,setReplyInfo] = useState([]);
+    const [replyInfo,setReplyInfo] = useState({replyContent : ''});
     const changeValue = (e) =>{
         setReplyInfo({
-            ...replyInfo,
             [e.target.name]:e.target.value
         });
     } 
@@ -149,14 +155,17 @@ const CommunityDetail = () => {
             })
             .then((res)=>{
                 if(res != null){
-                        setReplyInfo([]);
+                        setReplyInfo({});
+                        setReplyLength(replyLength+1);
                         navigator("/community/"+communityNo);
+                    
                 }else{
                     alert("댓글 작성 실패했습니다.")
                 }
             })
         }
         fetchfun();
+        console.log('댓그 info 상태 : ',replyInfo);
     }
     return (
         <SiteLayout>
@@ -187,11 +196,11 @@ const CommunityDetail = () => {
                                 <div>
                                     유저 이름
                                 </div>
-                                    <input type="text" name="replyContent" onChange={changeValue}/>
+                                    <input type="text" name="replyContent" onChange={changeValue} value={replyInfo.replyContent || ''}/>
                                     <button style={{marginLeft:'10px'}} type="button" onClick={()=>{replyWrite()}}>작성</button>
                                 <div>
                                     댓글 목록
-                                    {replyList.map(reply=><ReplyItem key = {reply.replyNo} reply={reply} />)}
+                                    {replyList.map(reply=><ReplyItem key = {reply.replyNo} reply={reply} replyLength={replyLength} setReplyLength={setReplyLength} />)}
                                 </div>
                             </div>
                             

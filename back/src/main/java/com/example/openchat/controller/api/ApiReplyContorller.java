@@ -56,7 +56,7 @@ public class ApiReplyContorller {
             //모 댓글 삭제
             System.out.println("모 댓글 삭제");
             int result = replyService.replyDelete(replyVo);
-            if(result == 1){
+            if(result != 0){
                 return new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
             }else{
                 return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
