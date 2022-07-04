@@ -77,7 +77,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         //JWT 토큰 생성하기
         String jwtToken = JWT.create()
                 .withSubject("사용자 토큰")
-                        .withExpiresAt(new Date(System.currentTimeMillis()+(60000 * 10))) //토큰 만료 시간 (현재시간 + 10분)
+                        .withExpiresAt(new Date(System.currentTimeMillis()+(60000 * 100))) //토큰 만료 시간 (현재시간 + 10분)
                         .withClaim("id",principalDetails.getUser().getUserNo())
                                 .withClaim("username",principalDetails.getUser().getUsername())
                                         .sign(Algorithm.HMAC512("cos"));
