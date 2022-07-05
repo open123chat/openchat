@@ -93,7 +93,7 @@ const NoticeWrite = () => {
         <SiteLayout>
             <Form style={{marginTop:'20px'}} >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label> 공지사항 제목</Form.Label>
+                    <Form.Label> 제목</Form.Label>
                     <Form.Control type="text" placeholder="제목을 입력해주세요" onChange={changeValue} name="noticeTitle" />
 
                 </Form.Group>
@@ -131,7 +131,7 @@ const NoticeWrite = () => {
                 </Form.Group>
                 <div style={{display:'flex', justifyContent:'center'}}>
                     <Button variant="primary" onClick={()=>{submitCommunity()}}>
-                        글작성
+                        공지사항 작성
                     </Button>
                 </div>
                 {/* <ReactSummernote
