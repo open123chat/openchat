@@ -135,7 +135,7 @@ const Community = () => {
                     </Nav>
                 </Card.Header>
             </Card>
-            <div style={{height:'80%', width:'100%'}}>
+            <div style={{height:'80%', width:'100%', marginTop:'20px'}}>
                 <table style={{width:'100%'}}>
                     <thead>
                         <tr>

@@ -45,6 +45,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
             System.out.println("principal 유저 : "+principalDetails.getUser().getUsername());
             System.out.println(principalDetails.getUser().getUsername());
+            System.out.println("principal 유저 권한 : " + principalDetails.getUser().getRoles());
             System.out.println("*********************************************");
             //authentication 객체가 session 영역에 저장하고 return
             //리턴 이유는 권한 관리를 security가 대신 해주기때문에 편하기 위해서
@@ -79,7 +80,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withSubject("사용자 토큰")
                         .withExpiresAt(new Date(System.currentTimeMillis()+(60000 * 100))) //토큰 만료 시간 (현재시간 + 10분)
                         .withClaim("id",principalDetails.getUser().getUserNo())
-                                .withClaim("username",principalDetails.getUser().getUsername())
+                        .withClaim("username",principalDetails.getUser().getUsername())
+                        .withClaim("role", principalDetails.getUser().getRoles())
                                         .sign(Algorithm.HMAC512("cos"));
         System.out.println("JWT 토큰 생성완료 : "+ jwtToken);
         response.addHeader("Authorization","Bearer "+jwtToken); //응답해줄 때 header에 담을 data(jwt토큰)
