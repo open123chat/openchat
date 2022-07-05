@@ -76,7 +76,7 @@ const Notice = () => {
                     localStorage.getItem('Authorization') != null && localStorage.getItem('role') == 'ROLE_ADMIN'
                     ?
                     <Button>
-                        <Link to ="/communityWrite" style={{color:'white', textDecoration:'none'}}>
+                        <Link to ="/notice/write" style={{color:'white', textDecoration:'none'}}>
                         글쓰기</Link>                
                     </Button>
                     :

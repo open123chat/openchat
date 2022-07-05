@@ -7,10 +7,11 @@ import Login from "./component/user/Login";
 import Join from "./component/user/Join";
 import Chat from "./component/chat/Chat"
 import Community from "./component/community/Community"
-import Notice from "./component/notice/Notice"
 import CommunityWrite from "./component/community/CommunityWrite";
 import CommunityDetail from "./component/community/CommunityDetail";
 import CommunityUpdate from "./component/community/CommunityUpdate";
+import Notice from "./component/notice/Notice"
+import NoticeWrite from "./component/notice/NoticeWrite"
 
 export default function App() {
   return (
@@ -25,7 +26,8 @@ export default function App() {
           <Route path="/community/:communityNo" element={<CommunityDetail/>}/>
           <Route path="/notice" element={<Notice />} />
           <Route path="/community/update/:communityNo" element={<CommunityUpdate />} />
-          
+          <Route path="/notice/write" element={<NoticeWrite/>}/>
+
       </Routes>
     </Router>
     );

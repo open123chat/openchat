@@ -45,18 +45,17 @@ public class ApiUserController {
         }
 
     }
-
-    //user,admin권한만 접근가능
-    @GetMapping("/info/user")
-    public String infoUser(){
-
-        return "user";
-    }
-
-    //admin권한만 접근가능
-    @GetMapping("/info/admin")
-    public String infoAdmin(){
-
-        return "admin";
-    }
+//    //user,admin권한만 접근가능
+//    @GetMapping("/info/user")
+//    public String infoUser(){
+//
+//        return "user";
+//    }
+//
+//    //admin권한만 접근가능
+//    @GetMapping("/info/admin")
+//    public String infoAdmin(){
+//
+//        return "admin";
+//    }
 }
