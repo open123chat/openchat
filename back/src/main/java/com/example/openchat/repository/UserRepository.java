@@ -19,4 +19,9 @@ public class UserRepository {
     public int JoinUser(UserVo userVo){
         return sqlSession.insert("user.joinUser",userVo);
     }
+
+    // Admin 회원가입
+    public int JoinAdminUser(UserVo userVo){
+        return sqlSession.insert("user.joinAdminUser",userVo);
+    }
 }

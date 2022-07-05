@@ -14,7 +14,16 @@ public class UserService {
 //    public UserVo findByIdAndPasswordUser(){
 //        return userRepository.findByIdAndPasswordUser();
 //    }
+    //회원가입
     public int JoinUser(UserVo userVo){
+        userVo.setRoles("ROLE_USER");
         return userRepository.JoinUser(userVo);
     }
+
+    //Amdin회원가입
+    public int JoinAdminUser(UserVo userVo){
+
+        return userRepository.JoinAdminUser(userVo);
+    }
+
 }

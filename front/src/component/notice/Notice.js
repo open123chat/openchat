@@ -71,17 +71,17 @@ const Notice = () => {
                 </table>
             </div>
             <div style={{display:'flex',justifyContent:'flex-end', marginTop:'-30px'}}>
-                <Button>
+
                     {
-                    localStorage.getItem('Authorization') ==null
+                    localStorage.getItem('Authorization') != null && localStorage.getItem('role') == 'ROLE_ADMIN'
                     ?
-                    <Link to ="/login" style={{color:'white', textDecoration:'none'}}>
-                    글쓰기</Link>
+                    <Button>
+                        <Link to ="/communityWrite" style={{color:'white', textDecoration:'none'}}>
+                        글쓰기</Link>                
+                    </Button>
                     :
-                    <Link to ="/communityWrite" style={{color:'white', textDecoration:'none'}}>
-                    글쓰기</Link>
-                    }                   
-                </Button>
+                    <></>
+                    }
             </div>
         </SiteLayout>
     );

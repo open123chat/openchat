@@ -33,8 +33,17 @@ public class ApiUserController {
         String beforePassword = userVo.getPassword();
         String afterPassword = passwordEncoder.encode(beforePassword);
         userVo.setPassword(afterPassword);
-        userVo.setRoles("ROLE_USER");
-        return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
+        System.out.println("user 권한 : "+userVo.getRoles());
+
+        if(!userVo.getRoles().equals("ROLE_ADMIN")){
+            //일반 사용자 서비스
+            return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
+        }else{
+            //관리자 등록 서비스
+            System.out.println("관리자 등록 Controller");
+            return new ResponseEntity<>(userService.JoinAdminUser(userVo), HttpStatus.CREATED);//201
+        }
+
     }
 
     //user,admin권한만 접근가능

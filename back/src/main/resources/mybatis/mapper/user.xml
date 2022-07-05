@@ -12,6 +12,16 @@
         </selectKey>
     </insert>
 
+    <insert id="joinAdminUser" parameterType="userVo">
+        <![CDATA[
+            insert into user(username,password,userNickName,userEmail,roles) values (#{username}, #{password}, #{userNickName}, #{userEmail}, #{roles});
+        ]]>
+        <selectKey keyProperty="userNo" resultType="long"
+                   order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
     <select id="findByIdAndPasswordUser" parameterType="string" resultType="userVo">
         <![CDATA[
             select userNo, username, password, userNickName, userEmail, roles from user where username= #{username};
