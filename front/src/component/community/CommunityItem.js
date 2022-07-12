@@ -6,7 +6,7 @@ const CommunityItem = (props) => {
     return (
         <tr>
             <td>{communityNo}</td>
-            <td><Link to={"/community/"+communityNo}>
+            <td><Link to={"/community/"+communityNo} style={{textDecorationLine:'none', color:'black'}}>
                 <div style={{display:'flex'}}>
                     {communityTitle} [{replyCount}]
                 </div>

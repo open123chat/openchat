@@ -17,13 +17,7 @@ public class ApiUserController {
     private UserService userService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    //간편 로그인
-//    @GetMapping
-//    public ResponseEntity findByIdAndPasswordUser(){
-//        return new ResponseEntity<>(userService.findByIdAndPasswordUser(),HttpStatus.OK); //200
-//    }
-
+    
     //회원가입
     @PostMapping("/join")
     public ResponseEntity UserJoin(@RequestBody UserVo userVo){
@@ -35,9 +29,10 @@ public class ApiUserController {
         userVo.setPassword(afterPassword);
         System.out.println("user 권한 : "+userVo.getRoles());
 
-        if(!userVo.getRoles().equals("ROLE_ADMIN")){
+        if(userVo.getRoles() == null ||!userVo.getRoles().equals("ROLE_ADMIN") ){
             //일반 사용자 서비스
-            return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
+            System.out.println("일반 사용자 등록 Controller");
+            return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.NOT_FOUND); //201
         }else{
             //관리자 등록 서비스
             System.out.println("관리자 등록 Controller");
