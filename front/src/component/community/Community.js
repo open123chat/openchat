@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form, FormControl, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import SiteLayout from '../../layout/SiteLayout';
 import CommunityItem from './CommunityItem';
+
 const Community = () => {
     const [communityList,setCommunityList] =useState([]);
     const [communityAllandMy,setCommunityAllandMy] = useState(true);
@@ -103,7 +106,7 @@ const Community = () => {
             <div style={{display:'flex',justifyContent:'space-between',marginTop:'30px', marginBottom:'10px'}}>
                 <h2 style={{}}>Community</h2>
 
-                <Form className="d-flex">
+                <Form className="search-bar">
                     <input
                         id="search"
                         name="search"
@@ -115,6 +118,7 @@ const Community = () => {
                         }}
                     />
                     {/* <Button variant="outline-success" onClick={()=>{communitySearchOnClick()}}>Search</Button> */}
+                    <FontAwesomeIcon icon={faSearch} className="searchIcon"/>
                 </Form>
             </div>
             <Card>

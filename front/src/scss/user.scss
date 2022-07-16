@@ -1,0 +1,45 @@
+.user-wrap {
+    margin: 0 auto;
+    width: 550px;
+    
+    &.login-wrap {
+        padding: 70px 90px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border: 1px solid #9297a4;
+        border-radius: 6px;
+        box-shadow: 0 5px 8px 0 rgb(68 68 68 / 4%);
+    }
+    
+    &.join-wrap {
+        padding: 70px 20px;
+
+        .join-btn {
+            margin: 20px 0;
+        }
+    }
+
+    h2 {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    .find-wrap {
+        font-size: 14px;
+        text-align: right;
+        
+        a {
+            text-decoration: none;
+            color: #888;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

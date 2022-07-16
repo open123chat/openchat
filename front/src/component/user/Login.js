@@ -5,6 +5,8 @@ import SiteLayout from '../../layout/SiteLayout';
 import { useNavigate } from 'react-router-dom';
 import jwt_encode from 'jwt-decode';
 
+import '../../scss/user.scss'
+
 const Login = () => {
     let navigate = useNavigate();
     const[user,setUser] = useState();
@@ -70,24 +72,26 @@ const Login = () => {
 
     return (
         <SiteLayout>
-            <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>id</Form.Label>
-                <Form.Control type="id" placeholder="id를 입력해주세요" name="username" onChange={changeValue}/>
-            </Form.Group>
+            <div className='user-wrap login-wrap'>
+                <h2 cl>LOGIN</h2>
+                <Form className="login-form">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>id</Form.Label>
+                        <Form.Control type="id" placeholder="id를 입력해주세요" name="username" onChange={changeValue}/>
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password를 입력해주세요" name="password" onChange={changeValue}/>
-            </Form.Group>
-
-            <Button variant="primary"  onClick={()=>{userLogin()}} style={{marginRight:'10px'}}>
-                로그인
-            </Button>
-            <Button variant="primary"  >
-                <Link to = "/join" style={{color:"white", textDecoration:'none'}}>회원가입</Link>
-            </Button>
-            </Form>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password를 입력해주세요" name="password" onChange={changeValue}/>
+                    </Form.Group>
+                    <Button className="btn-login mb-2"  onClick={()=>{userLogin()}}>
+                        로그인
+                    </Button>
+                </Form>
+                <div className="find-wrap">
+                    <Link to = "/join">회원가입</Link>
+                </div>
+            </div>
         </SiteLayout>
     );
 };

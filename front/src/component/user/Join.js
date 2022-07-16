@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Button,Form } from 'react-bootstrap';
 import SiteLayout from '../../layout/SiteLayout';
 import { useNavigate } from 'react-router-dom';
+
+import '../../scss/user.scss';
+
 const Login = (props) => {
     let navigate = useNavigate();
     const[userObj,setUserObj] = useState();
@@ -47,35 +50,34 @@ const Login = (props) => {
 
     return (
         <SiteLayout>
-            <Form>
-            <Form.Group className="mb-3" controlId="formBasicId">
-                <Form.Label>id</Form.Label>
-                <Form.Control type="id" placeholder="id를 입력해주세요" name="username" onChange={changeValue}/>
-            </Form.Group>
+            <div className='user-wrap join-wrap'>
+                <Form>
+                    <h2>JOIN</h2>
+                    <Form.Group className="mb-3" controlId="formBasicId">
+                        <Form.Label>id</Form.Label>
+                        <Form.Control type="id" placeholder="id를 입력해주세요" name="username" onChange={changeValue}/>
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password를 입력해주세요" name="password" onChange={changeValue}/>
-            </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password를 입력해주세요" name="password" onChange={changeValue}/>
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>이름</Form.Label>
-                <Form.Control type="name" placeholder="이름을 입력해주세요" name="userNickName" onChange={changeValue}/>
-            </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Label>이름</Form.Label>
+                        <Form.Control type="name" placeholder="이름을 입력해주세요" name="userNickName" onChange={changeValue}/>
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Email을 입력해주세요" name="userEmail" onChange={changeValue}/>
-            </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" placeholder="Email을 입력해주세요" name="userEmail" onChange={changeValue}/>
+                    </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-
-            <Button variant="primary" onClick={ ()=>{userJoin()}}>
-                회원가입
-            </Button>
-            </Form>
+                    <Button className='join-btn' variant="primary" onClick={ ()=>{userJoin()}}>
+                        회원가입
+                    </Button>
+                </Form>
+            </div>
         </SiteLayout>
     );
 };
