@@ -12,7 +12,8 @@
         <![CDATA[
             select n.noticeNo as noticeNo, n.noticeTitle as noticeTitle, u.userNickname as userNickname, date_format(n.regDate, '%Y-%m-%d') as regDate
             from notice as n join user as u
-            where n.userNo = u.userNo;
+            where n.userNo = u.userNo
+            order by n.noticeNo Desc;
         ]]>
     </select>
 </mapper>
