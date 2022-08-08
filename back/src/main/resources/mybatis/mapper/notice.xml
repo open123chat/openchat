@@ -33,4 +33,12 @@
             where noticeNo = #{noticeNo}
         ]]>
     </delete>
+
+    <update id="noticeUpdate" parameterType="noticeVo">
+        <![CDATA[
+            update notice
+            set noticeTitle=#{noticeTitle}, noticeContent = #{noticeContent}, regDate = now()
+            where noticeNo=#{noticeNo}
+        ]]>
+    </update>
 </mapper>

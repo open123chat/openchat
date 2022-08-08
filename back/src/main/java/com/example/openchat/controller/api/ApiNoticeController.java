@@ -50,4 +50,16 @@ public class ApiNoticeController {
             return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
         }
     }
+
+    //공지사항 수정
+    @PutMapping("/{noticeNo}")
+    public ResponseEntity noticeUpdate(@PathVariable Long noticeNo, @RequestBody NoticeVo noticeVo){
+        System.out.println("공지사항 수정 no :"+noticeNo +" body :"+noticeVo);
+        int result = noticeService.noticeUpdate(noticeNo,noticeVo);
+        if(result == 1){
+            return new ResponseEntity<>(result,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+        }
+    }
 }

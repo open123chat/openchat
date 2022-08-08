@@ -36,4 +36,9 @@ public class NoticeRepository {
     public int noticeDelete(Long noticeNo){
         return sqlSession.delete("notice.noticeDelete",noticeNo);
     }
+    //공지사항 수정
+    public int noticeUpdate(NoticeVo noticeVo){
+        return sqlSession.update("notice.noticeUpdate",noticeVo);
+
+    }
 }

@@ -29,4 +29,11 @@ public class NoticeService {
     public int noticeDelete(Long noticeNo){
         return noticeRepository.noticeDelete(noticeNo);
     }
+    //공지사항 수정
+    public int noticeUpdate(Long noticeNo, NoticeVo noticeVo){
+        noticeVo.setNoticeNo(noticeNo);
+        System.out.println("공지사항 수정 vo :"+noticeVo);
+        return noticeRepository.noticeUpdate(noticeVo);
+
+    }
 }
