@@ -47,7 +47,7 @@ const CommunityDetail = () => {
 
     //삭제 onClick 이벤트
     const communityDelete = () =>{
-        if(localStorage.getItem('userNo')==communityDetail.userNo){
+        if(localStorage.getItem('userNo')==communityDetail.userNo || localStorage.getItem('role')=='ROLE_ADMIN'){
             const fetchfun = async() =>{
                 await fetch("http://localhost:8080/api/community/"+communityNo,{
                     method:"DELETE",
@@ -210,7 +210,7 @@ const CommunityDetail = () => {
                 </Form.Group>
                 
             </Form>
-            {localStorage.getItem('userNo')==communityDetail.userNo
+            {localStorage.getItem('userNo')==communityDetail.userNo || localStorage.getItem('role')=='ROLE_ADMIN'
             ?
             <div className='mt-3'>
                 <Link to ={"/community/update/"+communityNo}><button style={{width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}}>수정</button></Link>
