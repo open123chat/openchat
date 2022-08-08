@@ -7,4 +7,12 @@
              insert into notice(userNo, noticeTitle, noticeContent, regDate) values(#{userNo}, #{noticeTitle}, #{noticeContent}, now());
         ]]>
     </insert>
+
+    <select id="noticeList" resultType="noticeVo">
+        <![CDATA[
+            select n.noticeNo as noticeNo, n.noticeTitle as noticeTitle, u.userNickname as userNickname, date_format(n.regDate, '%Y-%m-%d') as regDate
+            from notice as n join user as u
+            where n.userNo = u.userNo;
+        ]]>
+    </select>
 </mapper>

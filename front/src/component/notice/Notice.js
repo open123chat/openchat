@@ -2,12 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Form, FormControl, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
+import NoticeItem from './NoticeItem';
 const Notice = () => {
 
     //검색
     const [keyword, setKeyword] = useState('');
-    
-    
+    //공지사항 리스트
+    const [noticeList,setNoticeList] = useState([]);
+    useEffect( ()=>{
+        console.log("공지사항 dom 실행 됨??")
+        const data = async() =>{
+            const result = await fetch("http://localhost:3000/api/notice",{
+                method:"GET",
+                headers:{
+                    'Content-Type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:null 
+            }) //end fetch
+            .then(res=>res.json())
+            .then(res=>{
+                console.log('list 값',res);
+                setNoticeList(res);
+            });
+        }
+        data();
+    },[]); //end useEffect
+
+
     return (
         <SiteLayout>
             <div style={{display:'flex',justifyContent:'space-between',marginTop:'30px', marginBottom:'10px'}}>
@@ -56,17 +78,9 @@ const Notice = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><Link to={"/community/"}>
-                            <div style={{display:'flex'}}>
-                                title
-                            </div>
-                        </Link>
-                        </td>
-                        <td>Admin</td>
-                        <td>2022</td>
-                    </tr>
+                        {    //.filter(notice=>notice.noticeTitle.index(keyword) != -1)
+                            noticeList.map(notice=><NoticeItem key={notice.noticeNo} notice={notice} />)
+                        }
                     </tbody>
                 </table>
             </div>
