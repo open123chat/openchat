@@ -32,4 +32,8 @@ public class NoticeRepository {
         return sqlSession.selectOne("notice.noticeDetail",noticeNo);
     }
 
+    //공지사항 삭제
+    public int noticeDelete(Long noticeNo){
+        return sqlSession.delete("notice.noticeDelete",noticeNo);
+    }
 }

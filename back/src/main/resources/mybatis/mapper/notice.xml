@@ -26,4 +26,11 @@
             order by n.noticeNo Desc;
         ]]>
     </select>
+
+    <delete id="noticeDelete" parameterType="Long">
+        <![CDATA[
+            delete from notice
+            where noticeNo = #{noticeNo}
+        ]]>
+    </delete>
 </mapper>

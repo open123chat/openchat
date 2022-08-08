@@ -38,4 +38,16 @@ public class ApiNoticeController {
         System.out.println("공지사항 상세보기 : "+noticeNo);
         return new ResponseEntity<>(noticeService.noticeDetail(noticeNo),HttpStatus.OK);
     }
+
+    //공지사항 삭제
+    @DeleteMapping("/{noticeNo}")
+    public ResponseEntity noticeDelete(@PathVariable Long noticeNo){
+        System.out.println("공지사항 삭제 : "+noticeNo);
+        int result = noticeService.noticeDelete(noticeNo);
+        if(result == 1){
+            return new ResponseEntity<>(result,HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<>(result,HttpStatus.NOT_FOUND);
+        }
+    }
 }

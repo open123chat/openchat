@@ -25,5 +25,8 @@ public class NoticeService {
     public NoticeVo noticeDetail(Long noticeNo){
         return noticeRepository.noticeDetail(noticeNo);
     }
-
+    //공지사항 삭제
+    public int noticeDelete(Long noticeNo){
+        return noticeRepository.noticeDelete(noticeNo);
+    }
 }

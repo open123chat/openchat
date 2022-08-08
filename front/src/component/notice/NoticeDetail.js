@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
+import { useNavigate } from 'react-router-dom';
 
 const NoticeDetail = () => {    
     let {noticeNo} = useParams();
+    let navigator = useNavigate();
     const [noticeDetail, setNoticeDetail] = useState([]);
 
     useEffect( ()=>{
@@ -38,6 +40,39 @@ const NoticeDetail = () => {
         data();
     },[]); //end useEffect
 
+    //삭제 onClick 이벤트
+    const noticeDelete = () =>{
+        if(localStorage.getItem('role')=='ROLE_ADMIN'){
+            const fetchfun = async() =>{
+                await fetch("http://localhost:8080/api/notice/"+noticeNo,{
+                    method:"DELETE",
+                    headers:{
+                        'Authorization':localStorage.getItem('Authorization'),
+                        'Content-Type':'application/json',
+                        'Accept':'application/json'
+                    },
+                    body:null
+                })
+                .then((res)=>{
+                    if(res.status===204){
+                        return res;
+                    }else{
+                        return null;
+                    }
+                })
+                .then((res)=>{
+                    if(res!=null){
+                        navigator("/notice")
+                    }else{
+                        return null;
+                    }
+                })
+            }
+            fetchfun();
+        }else{
+            return null;
+        }
+    }
 
     return (
         <SiteLayout>
@@ -54,22 +89,22 @@ const NoticeDetail = () => {
                         <label>{noticeDetail.regDate}</label>
                     </div>
                 </div>
-                <div className="mb-3" style={{borderBottom:'1px solid gray'}} >
+                <div className="mb-3"  >
                     <div dangerouslySetInnerHTML={{__html: noticeDetail.noticeContent}} style={{marginTop:"50px",marginBottom:"50px"} }>
                 </div>    
                 </div>
             </Form.Group>
             
         </Form>
-        {/* {localStorage.getItem('userNo')==communityDetail.userNo
+        {localStorage.getItem('role')=='ROLE_ADMIN'
         ?
         <div className='mt-3'>
-            <Link to ={"/community/update/"+communityNo}><button style={{width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}}>수정</button></Link>
-            <button style={{marginLeft:"10px",width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}} onClick={()=>communityDelete()}>삭제</button>
+            <Link to ={"/notice/update/"+noticeNo}><button style={{width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}}>수정</button></Link>
+            <button style={{marginLeft:"10px",width:"50px", height:"40px", border:"0px", borderRadius:"5px", fontSize:"15px"}} onClick={()=>noticeDelete()}>삭제</button>
         </div>
         :
         <></>
-        } */}
+        }
 
     </SiteLayout>
     );
