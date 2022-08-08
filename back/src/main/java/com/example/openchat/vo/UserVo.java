@@ -17,7 +17,7 @@ public class UserVo {
     private String password; //유저 패스워드
     private String userNickName; //유저이름
     private String userEmail; //유저 이메일
-    private String roles; //유저 권한 - (ROLE_USER or ROLE_ADMIN)
+    private String roles; //유저 권한 - (ROLE_ADMIN or ROLE_MANAGER or ROLE_USER )
 
     public List<String> getRoleList(){
         if(this.roles.length()>0){

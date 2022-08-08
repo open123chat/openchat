@@ -128,7 +128,7 @@ const Community = () => {
                         <Nav.Link href="" onClick={()=>{AllCommunity()}}>전체 게시물</Nav.Link>
                     </Nav.Item>
                     {
-                    localStorage.getItem('Authorization') != undefined && localStorage.getItem('Authorization') != null 
+                    localStorage.getItem('Authorization') != undefined && localStorage.getItem('Authorization') != null && localStorage.getItem('role') == 'ROLE_USER'
                     ?
                     <Nav.Item>
                         <Nav.Link href="" onClick={()=>{MyCommunity()}}>내 게시물</Nav.Link>

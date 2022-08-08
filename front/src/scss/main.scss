@@ -1,0 +1,28 @@
+.CommunityAndNoticeDom{
+    display: flex;
+    width: 100%;
+    
+    .width50P {
+        width: 50%;
+    }
+}
+
+
+.table{
+    .thead{
+        text-align: center;
+        .tableNo{
+            width: 5%;
+        }
+        .talbeTitle{
+            width: 40%;
+        }
+        .tableuserNickname{
+            width: 13%;
+        }
+        .tableregDate{
+            width: 20%;
+        }
+    }
+    
+}

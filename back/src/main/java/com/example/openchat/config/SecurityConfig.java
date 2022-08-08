@@ -46,12 +46,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/user/info/user").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                 .antMatchers("/api/user/info/admin").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/api/community/write").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+                .antMatchers("/api/community/write").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER')")
                 .antMatchers("/api/community/mylist/*").access("hasRole('ROLE_USER')")
-                .antMatchers(HttpMethod.DELETE,"/api/community/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-                .antMatchers(HttpMethod.PUT,"/api/community/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-                .antMatchers(HttpMethod.POST,"/api/reply/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-                .antMatchers(HttpMethod.DELETE,"/api/reply/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+                .antMatchers(HttpMethod.POST,"/api/community/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.DELETE,"/api/community/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.PUT,"/api/community/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.POST,"/api/reply/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.DELETE,"/api/reply/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') ")
+                .antMatchers(HttpMethod.PUT,"/api/reply/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.POST,"/api/notice/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.DELETE,"/api/notice/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                .antMatchers(HttpMethod.PUT,"/api/notice/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
                 .anyRequest().permitAll();
 
     }
