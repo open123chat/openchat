@@ -21,4 +21,9 @@ public class NoticeService {
     public int NoticeWrite(NoticeVo noticeVo){
         return noticeRepository.NoticeWrite(noticeVo);
     }
+    //공지사항 상세보기
+    public NoticeVo noticeDetail(Long noticeNo){
+        return noticeRepository.noticeDetail(noticeNo);
+    }
+
 }

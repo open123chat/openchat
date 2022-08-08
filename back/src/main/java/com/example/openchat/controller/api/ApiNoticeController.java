@@ -31,4 +31,11 @@ public class ApiNoticeController {
             return new ResponseEntity(result, HttpStatus.NOT_FOUND);
         }
     }
+
+    //공지사항 상세보기
+    @GetMapping("/{noticeNo}")
+    public ResponseEntity noticeDetail(@PathVariable Long noticeNo){
+        System.out.println("공지사항 상세보기 : "+noticeNo);
+        return new ResponseEntity<>(noticeService.noticeDetail(noticeNo),HttpStatus.OK);
+    }
 }

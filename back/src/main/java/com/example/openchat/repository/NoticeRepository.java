@@ -27,5 +27,9 @@ public class NoticeRepository {
             return 2;
         }
     }
+    //공지사항 상세보기
+    public NoticeVo noticeDetail(Long noticeNo){
+        return sqlSession.selectOne("notice.noticeDetail",noticeNo);
+    }
 
 }

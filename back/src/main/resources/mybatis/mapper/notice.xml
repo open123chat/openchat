@@ -16,4 +16,14 @@
             order by n.noticeNo Desc;
         ]]>
     </select>
+
+    <select id="noticeDetail" parameterType="Long" resultType="noticeVo">
+        <![CDATA[
+            select n.noticeNo as noticeNo, n.noticeTitle as noticeTitle, u.userNickname as userNickname, date_format(n.regDate, '%Y-%m-%d %H:%i') as regDate, n.noticeContent
+            from notice as n join user as u
+            where n.noticeNo = #{noticeNo}
+            and n.userNo = u.userNo
+            order by n.noticeNo Desc;
+        ]]>
+    </select>
 </mapper>

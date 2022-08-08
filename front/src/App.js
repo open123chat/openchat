@@ -12,6 +12,7 @@ import CommunityDetail from "./component/community/CommunityDetail";
 import CommunityUpdate from "./component/community/CommunityUpdate";
 import Notice from "./component/notice/Notice"
 import NoticeWrite from "./component/notice/NoticeWrite"
+import NoticeDetail from "./component/notice/NoticeDetail";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/notice" element={<Notice />} />
           <Route path="/community/update/:communityNo" element={<CommunityUpdate />} />
           <Route path="/notice/write" element={<NoticeWrite/>}/>
+          <Route path="/notice/:noticeNo" element={<NoticeDetail/>}/>
 
       </Routes>
     </Router>
