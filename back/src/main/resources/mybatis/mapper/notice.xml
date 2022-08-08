@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="notice">
-
+    <insert id="noticeWrite" parameterType="noticeVo">
+        <![CDATA[
+             insert into notice(userNo, noticeTitle, noticeContent, regDate) values(#{userNo}, #{noticeTitle}, #{noticeContent}, now());
+        ]]>
+    </insert>
 </mapper>
