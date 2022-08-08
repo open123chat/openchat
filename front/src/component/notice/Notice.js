@@ -9,6 +9,7 @@ const Notice = () => {
     const [keyword, setKeyword] = useState('');
     //공지사항 리스트
     const [noticeList,setNoticeList] = useState([]);
+  
     useEffect( ()=>{
         console.log("공지사항 dom 실행 됨??")
         const data = async() =>{
@@ -79,7 +80,7 @@ const Notice = () => {
                     </thead>
                     <tbody>
                         {    //.filter(notice=>notice.noticeTitle.index(keyword) != -1)
-                            noticeList.map(notice=><NoticeItem key={notice.noticeNo} notice={notice} />)
+                            noticeList.filter(notice=>notice.noticeTitle.indexOf(keyword) != -1).map(notice=><NoticeItem key={notice.noticeNo} notice={notice} />)
                         }
                     </tbody>
                 </table>
