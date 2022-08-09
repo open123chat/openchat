@@ -6,7 +6,7 @@ const NoticeItem = (props) => {
     return (
         <tr>
             <td>{noticeNo}</td>
-            <td><Link to={"/notice/"+noticeNo} style={{textDecorationLine:'none', color:'red'}}>
+            <td><Link to={"/notice/"+noticeNo} style={{textDecorationLine:'none', color:'#F05650'}}>
                 <div style={{display:'flex'}}>
                     {noticeTitle}
                 </div>

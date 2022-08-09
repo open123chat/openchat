@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SiteLayout from '../../layout/SiteLayout';
 import '../../scss/main.scss'
 import CommunityList from './CommunityList';
@@ -48,7 +49,13 @@ const Main = () => {
             <div className='CommunityAndNoticeDom'>
               {/* 커뮤니티 */}
               <div className='width50P' style={{marginRight:'10px'}}>
-                <h3>커뮤니티</h3>
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <h3>커뮤니티</h3>
+                    <div style={{marginTop:'10px'}}>
+                      <Link Link to={"/community"} style={{textDecorationLine:'none', color:'gray'}}>더보기</Link>
+                    </div>
+                    
+                </div>
                 <table className='table'>
                   <thead className='thead'>
                     <tr>   
@@ -69,7 +76,13 @@ const Main = () => {
 
               {/* 공지 */}
               <div className='width50P' style={{marginLeft:'10px'}}>
-                <h3>공지사항</h3>
+              <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <h3>공지사항</h3>
+                    <div style={{marginTop:'10px'}}>
+                      <Link Link to={"/notice"} style={{textDecorationLine:'none', color:'gray'}}>더보기</Link>
+                    </div>
+                    
+                </div>
                 <table className='table'>
                   <thead className='thead'>
                     <tr>
