@@ -1,8 +1,41 @@
-import React from 'react';
-import SiteLayout from '../layout/SiteLayout';
-import '../scss/main.scss'
+import React, { useEffect, useState } from 'react';
+import SiteLayout from '../../layout/SiteLayout';
+import '../../scss/main.scss'
+import CommunityList from './CommunityList';
+import NoticeList from './NoticeList';
 const Main = () => {
   
+  const [mainList,setMainList] = useState([]);
+  const [communityList,setCommunityList] = useState([]);
+  const [noticeList,setNoticeList] = useState([]);
+
+
+  useEffect( ()=>{
+    const data = async() =>{
+      const response = await fetch("http://localhost:3000/api/main",{
+        method:"GET",
+        headers:{
+            'Content-Type':'application/json',
+            'Accept':'application/json'
+        },
+        body:null 
+    }) //end fetch
+      .then(res=>res.json())
+      .then(res=>{
+        console.log('list 값',res);
+        console.log('communitylist 값',res.community);
+        console.log('noticelist 값',res.notice);
+        setCommunityList(res.community);
+        setNoticeList(res.notice);
+        
+    });
+    }
+    data();
+   },[]);
+
+
+
+
     return (
       <SiteLayout>
           <div style={{padding:'20px'}}>
@@ -18,8 +51,7 @@ const Main = () => {
                 <h3>커뮤니티</h3>
                 <table className='table'>
                   <thead className='thead'>
-                    <tr>
-                      
+                    <tr>   
                       <th className='tableTitle'>내용</th>
                       <th className='tableuserNickname'>작성자</th>
                       <th className='tableregDate'>날짜</th>
@@ -27,12 +59,9 @@ const Main = () => {
                   </thead>
 
                   <tbody>
-                    <tr>
-                      
-                      <td>안녕하세요 안녕하세요 안녕하세요</td>
-                      <td>khu</td>
-                      <td>2022-08-08</td>
-                    </tr>
+                    {
+                      communityList.map(community=><CommunityList key={community.no} community={community}/>)
+                    }
                   </tbody>
                   
                 </table>
@@ -51,12 +80,9 @@ const Main = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      
-                      <td>안녕하세요 안녕하세요 안녕하세요</td>
-                      <td>khu</td>
-                      <td>2022-08-08</td>
-                    </tr>
+                  {
+                      noticeList.map(notice=><NoticeList key={notice.no} notice={notice}/>)
+                  }
                   </tbody>
                 </table>
               </div>
