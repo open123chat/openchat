@@ -9,12 +9,14 @@
         <typeAlias alias="communityVo" type="com.example.openchat.vo.CommunityVo"/>
         <typeAlias alias="replyVo" type="com.example.openchat.vo.ReplyVo"/>
         <typeAlias alias="noticeVo" type="com.example.openchat.vo.NoticeVo"/>
+        <typeAlias alias="mainVo" type="com.example.openchat.vo.MainVo"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/mapper/user.xml"/>
         <mapper resource="mybatis/mapper/community.xml"/>
         <mapper resource="mybatis/mapper/reply.xml"/>
         <mapper resource="mybatis/mapper/notice.xml"/>
+        <mapper resource="mybatis/mapper/main.xml"/>
     </mappers>
 
 </configuration>

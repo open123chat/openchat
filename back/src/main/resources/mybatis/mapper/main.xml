@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main">
+    <select id="mainCommunityAndNoticeList" resultType="mainVo">
+        (select c.communityNo as no,c.userNo as userNo, c.communityTitle as title, date_format(c.communityDate, '%Y-%m-%d') as regDate,u.userNickname as userNickname, 'community' as gb, ifnull(count.replyCount,0) as replyCount
+        from community as c Left join (select communityNo, count(*) as replycount from reply group by communityNo order by communityNo Desc) as count
+        on c.communityNo = count.communityNo
+        join user as u
+        where c.userNo = u.userNo
+        order by c.communityNo Desc limit 5)
+        union all
+        (select n.noticeNo as no,n.userNo as userNo, n.noticeTitle as title, date_format(n.regDate, '%Y-%m-%d') as regDate,u.userNickname as userNickname, 'notice' as gb, '0' as replyCount
+        from notice as n
+        join user as u
+        where n.userno = u.userno
+        order by n.noticeNo
+        Desc limit 5);
+    </select>
+</mapper>

@@ -19,7 +19,7 @@ const Main = () => {
                 <table className='table'>
                   <thead className='thead'>
                     <tr>
-                      <th className='tableNo'>No</th>
+                      
                       <th className='tableTitle'>내용</th>
                       <th className='tableuserNickname'>작성자</th>
                       <th className='tableregDate'>날짜</th>
@@ -28,7 +28,7 @@ const Main = () => {
 
                   <tbody>
                     <tr>
-                      <td>1</td>
+                      
                       <td>안녕하세요 안녕하세요 안녕하세요</td>
                       <td>khu</td>
                       <td>2022-08-08</td>
@@ -44,7 +44,7 @@ const Main = () => {
                 <table className='table'>
                   <thead className='thead'>
                     <tr>
-                      <th className='tableNo'>No</th>
+                      
                       <th className='tableTitle'>내용</th>
                       <th className='tableuserNickname'>작성자</th>
                       <th className='tableregDate'>날짜</th>
@@ -52,7 +52,7 @@ const Main = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
+                      
                       <td>안녕하세요 안녕하세요 안녕하세요</td>
                       <td>khu</td>
                       <td>2022-08-08</td>

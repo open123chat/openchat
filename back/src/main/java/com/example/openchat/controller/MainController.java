@@ -14,11 +14,11 @@ public class MainController {
     @Autowired
     private RedisSampleService redisSampleService;
 
-    @GetMapping("/")
-    public ResponseEntity main() {
-
-        return new ResponseEntity<>(1, HttpStatus.OK);
-    }
+//    @GetMapping("/")
+//    public ResponseEntity main() {
+//
+//        return new ResponseEntity<>(1, HttpStatus.OK);
+//    }
 
     //get
     @PostMapping(value = "/getRedis")
