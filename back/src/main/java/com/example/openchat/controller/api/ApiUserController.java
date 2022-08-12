@@ -32,7 +32,7 @@ public class ApiUserController {
         if(userVo.getRoles() == null ||!userVo.getRoles().equals("ROLE_ADMIN") ){
             //일반 사용자 서비스
             System.out.println("일반 사용자 등록 Controller");
-            return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.NOT_FOUND); //201
+            return new ResponseEntity<>(userService.JoinUser(userVo), HttpStatus.CREATED); //201
         }else{
             //관리자 등록 서비스
             System.out.println("관리자 등록 Controller");

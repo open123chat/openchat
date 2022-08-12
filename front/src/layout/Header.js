@@ -32,6 +32,12 @@ const Header = () => {
                   : 
                     <>
                       <Link to = "" className='nav-link'>사용자 : {username}</Link>
+                      {
+                         localStorage.getItem('role') == "ROLE_ADMIN"
+                        ? <Link to ="/userManager" className='nav-link'>유저 관리</Link>
+                        : <></>
+                      }
+
                       <Link to = "/" className="nav-link" onClick={()=>{logout()}}>로그아웃</Link>
                     </>
                 }

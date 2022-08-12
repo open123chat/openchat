@@ -4,7 +4,7 @@
 <mapper namespace="user">
     <insert id="joinUser" parameterType="userVo">
         <![CDATA[
-            insert into user(username,password,userNickName,userEmail,roles) values (#{username}, #{password}, #{userNickName}, #{userEmail}, #{roles});
+            insert into user(username,password,userNickName,userEmail,roles,regDate,state) values (#{username}, #{password}, #{userNickName}, #{userEmail}, #{roles},now(),#{state});
         ]]>
         <selectKey keyProperty="userNo" resultType="long"
                    order="AFTER">
@@ -14,7 +14,7 @@
 
     <insert id="joinAdminUser" parameterType="userVo">
         <![CDATA[
-            insert into user(username,password,userNickName,userEmail,roles) values (#{username}, #{password}, #{userNickName}, #{userEmail}, #{roles});
+            insert into user(username,password,userNickName,userEmail,roles,regDate,state) values (#{username}, #{password}, #{userNickName}, #{userEmail}, #{roles},now(),#{state});
         ]]>
         <selectKey keyProperty="userNo" resultType="long"
                    order="AFTER">

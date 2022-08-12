@@ -17,6 +17,7 @@ public class UserService {
     //회원가입
     public int JoinUser(UserVo userVo){
         userVo.setRoles("ROLE_USER");
+        userVo.setState("T");
         return userRepository.JoinUser(userVo);
     }
 

@@ -18,6 +18,9 @@ public class UserVo {
     private String userNickName; //유저이름
     private String userEmail; //유저 이메일
     private String roles; //유저 권한 - (ROLE_ADMIN or ROLE_MANAGER or ROLE_USER )
+    private String regDate; // 생성 날짜
+    private String deleteDate; // 삭제 날짜
+    private String state; // 유저 상태
 
     public List<String> getRoleList(){
         if(this.roles.length()>0){
