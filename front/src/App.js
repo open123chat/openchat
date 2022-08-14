@@ -14,7 +14,7 @@ import Notice from "./component/notice/Notice"
 import NoticeWrite from "./component/notice/NoticeWrite"
 import NoticeDetail from "./component/notice/NoticeDetail";
 import NoticeUpdate from "./component/notice/NoticeUpdate";
-import UserManager from "./component/user/UserManager";
+import UserManager from "./component/admin/UserManager";
 
 export default function App() {
   return (

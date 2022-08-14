@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/notice/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
                 .antMatchers(HttpMethod.DELETE,"/api/notice/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
                 .antMatchers(HttpMethod.PUT,"/api/notice/*").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                .antMatchers("/api/admin/*").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().permitAll();
 
     }
