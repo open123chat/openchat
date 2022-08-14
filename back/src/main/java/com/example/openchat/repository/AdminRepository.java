@@ -1,5 +1,6 @@
 package com.example.openchat.repository;
 
+import com.example.openchat.vo.UserVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,4 +20,5 @@ public class AdminRepository {
     public List userList(){
         return sqlSession.selectList("admin.userList");
     }
+
 }

@@ -24,4 +24,9 @@ public class UserRepository {
     public int JoinAdminUser(UserVo userVo){
         return sqlSession.insert("user.joinAdminUser",userVo);
     }
+
+    //유저 정보
+    public UserVo userInfo(Long userNo){
+        return sqlSession.selectOne("user.userInfo",userNo);
+    }
 }

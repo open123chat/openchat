@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import SiteLayout from '../../layout/SiteLayout';
 import AdminList from './AdminList';
+import UserInfo from './UserInfo';
 import UserList from './UserList';
 
 const UserManager = () => {
     const [adminList,setAdminList] = useState([]);
     const [userList,setUserList]=useState([]);
+    const [userInfo,setUserInfo]=useState([]);
 
     useEffect( ()=>{
         const data = async() =>{
@@ -45,21 +47,25 @@ const UserManager = () => {
                         <div style={{textAlign:"center", marginTop:"20px"}}>
                             <h4>유저 목록</h4>
                         </div>
-                        <div style={{ marginTop:"30px", border:"1px solid black", padding:"10px", marginLeft:"30px",marginRight:"30px"}}>
+                        <div style={{ marginTop:"20px", border:"1px solid black", padding:"10px", marginLeft:"30px",marginRight:"30px", height:"300px", overflow:"scroll"}}>
                             <div style={{textAlign:"center",color:"#F05650"}}>-관리자-</div>
                             {
-                                adminList.map(admin => <AdminList key={admin.userNo} admin={admin}/>)
+                                adminList.map(admin => <AdminList key={admin.userNo} admin={admin} setUserInfo={setUserInfo}/>)
                             }
                             
-                            <div style={{textAlign:"center"}}>-유저-</div>
+                            <div style={{textAlign:"center",color:"#4070FF"}}>-유저-</div>
                             {
-                                userList.map(user => <UserList key={user.userNo} user={user}/>)
+                                userList.map(user => <UserList key={user.userNo} user={user} setUserInfo={setUserInfo}/>)
                             }
                         </div>
                     </div>
                     {/* 유저 상세보기 DOM */}
-                    <div style={{border:"1px solid black", width:"50%", marginLeft:"10px"}}>
-                        유저 상세보기
+                    <div style={{border:"1px solid black", width:"50%", borderRadius:"20px", padding:"10px",marginLeft:"10px"}}>
+                        <div style={{textAlign:"center", marginTop:"20px"}}>
+                            <h4>유저 정보</h4>
+                        </div>
+                        <UserInfo userInfo={userInfo}/>
+
                     </div>
                 </div>
             </div>

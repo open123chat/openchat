@@ -28,4 +28,9 @@
         ]]>
     </select>
 
+    <select id="userInfo" parameterType="Long" resultType="userVo">
+        <![CDATA[
+            select username, userNickName, userEmail, roles, date_format(regDate, '%Y-%m-%d %H:%i') as regDate from user where userNo = #{userNo};
+        ]]>
+    </select>
 </mapper>

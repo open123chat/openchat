@@ -27,4 +27,10 @@ public class UserService {
         return userRepository.JoinAdminUser(userVo);
     }
 
+    //유저 정보
+    public UserVo userInfo(Long userNo) {
+        UserVo userEntity = userRepository.userInfo(userNo);
+        System.out.println("유저 정보 : " + userEntity);
+        return userEntity;
+    }
 }

@@ -40,6 +40,12 @@ public class ApiUserController {
         }
 
     }
+    //유저 정보
+    @GetMapping("/{userNo}")
+    public ResponseEntity userInfo(@PathVariable Long userNo){
+        System.out.println("유저 정보 No : "+ userNo);
+        return new ResponseEntity<>(userService.userInfo(userNo),HttpStatus.OK);
+    }
 //    //user,admin권한만 접근가능
 //    @GetMapping("/info/user")
 //    public String infoUser(){

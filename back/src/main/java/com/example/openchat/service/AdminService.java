@@ -2,6 +2,7 @@ package com.example.openchat.service;
 
 import com.example.openchat.repository.AdminRepository;
 import com.example.openchat.vo.UserInfoVo;
+import com.example.openchat.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +32,6 @@ public class AdminService {
         System.out.println("유저 리스트 : "+userList);
         return userList;
     }
+
+
 }
