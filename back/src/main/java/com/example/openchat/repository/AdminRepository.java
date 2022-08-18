@@ -20,5 +20,8 @@ public class AdminRepository {
     public List userList(){
         return sqlSession.selectList("admin.userList");
     }
-
+    //유저 권한 수정
+    public int roleUpdate(UserVo userVo){
+        return sqlSession.update("admin.roleUpdate", userVo);
+    }
 }

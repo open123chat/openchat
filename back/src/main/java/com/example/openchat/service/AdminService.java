@@ -33,5 +33,9 @@ public class AdminService {
         return userList;
     }
 
-
+    //유저 권한 수정
+    public int roleUpdate(Long userNo, UserVo userVo){
+        userVo.setUserNo(userNo);
+        return adminRepository.roleUpdate(userVo);
+    }
 }

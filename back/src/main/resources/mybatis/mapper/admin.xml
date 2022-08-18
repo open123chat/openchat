@@ -14,6 +14,11 @@
         ]]>
     </select>
 
+    <update id="roleUpdate" parameterType="userVo">
+        <![CDATA[
+            update user set roles= #{roles} where userNo = #{userNo};
+        ]]>
+    </update>
 
 
 </mapper>
