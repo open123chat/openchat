@@ -5,7 +5,7 @@ const UserInfo = (props) => {
     const userInfo = props.userInfo;
     const userManagerState = props.userManagerState;
     const setUserManagerState = props.setUserManagerState;
-
+    const setUserInfo = props.setUserInfo;
     let navigator = useNavigate();
     const [roleSelectBoxValue,setRoleSelectBoxValue]=useState("");
     const roleSelectBox = (e) =>{
@@ -41,7 +41,16 @@ const UserInfo = (props) => {
                 .then((res)=>{
                     if(res != null){
                         alert("권한이 변경 되었습니다.")
-                        userManagerState(true);
+                        setUserManagerState(
+                            {
+                                username: userInfo.username,
+                                roles: roleSelectBoxValue
+                            }
+                        );
+                        console.log('변경',userInfo);
+                        setUserInfo([userInfo,userManagerState]);
+                        console.log('변경2',userInfo);
+                        
                     }
                 })
             }
@@ -64,7 +73,11 @@ const UserInfo = (props) => {
                 권한 : {
                     userInfo.roles==='ROLE_ADMIN'
                     ? '관리자'
-                    : '사용자'
+                    : 
+                    userInfo.roles === 'ROLE_USER'
+                    ?'사용자'
+                    : <></>
+                    
                 }
             </div>
             <div>

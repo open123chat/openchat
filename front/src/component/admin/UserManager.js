@@ -6,7 +6,7 @@ import UserInfo from './UserInfo';
 import UserList from './UserList';
 
 const UserManager = () => {
-    const [userManagerState,setUserManagerState]=useState(false);
+    const [userManagerState,setUserManagerState]=useState({});
     const [adminList,setAdminList] = useState([]);
     const [userList,setUserList]=useState([]);
     const [userInfo,setUserInfo]=useState([]);
@@ -38,7 +38,7 @@ const UserManager = () => {
         }else{
             alert("관리자 로그인을 진행해 주세요");
         }       
-    },userManagerState); // end useEffect
+    },[userManagerState]); // end useEffect
     return (
         <SiteLayout>
             <div style={{padding:"10px", height:"100%"}}>
@@ -67,7 +67,7 @@ const UserManager = () => {
                         <div style={{textAlign:"center", marginTop:"20px"}}>
                             <h4>유저 정보</h4>
                         </div>
-                        <UserInfo userInfo={userInfo} userManagerState={userManagerState} setUserManagerState={setUserManagerState}/>
+                        <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} setUserManagerState={setUserManagerState}/>
 
                     </div>
                 </div>
