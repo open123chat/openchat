@@ -6,7 +6,7 @@ import UserInfo from './UserInfo';
 import UserList from './UserList';
 
 const UserManager = () => {
-    const [userManagerState,setUserManagerState]=useState(false);
+    const [userManagerState,setUserManagerState]=useState({});
     const [adminList,setAdminList] = useState([]);
     const [userList,setUserList]=useState([]);
     const [userInfo,setUserInfo]=useState([]);
@@ -67,7 +67,7 @@ const UserManager = () => {
                         <div style={{textAlign:"center", marginTop:"20px"}}>
                             <h4>유저 정보</h4>
                         </div>
-                        <UserInfo userInfo={userInfo} userManagerState={userManagerState} setUserManagerState={setUserManagerState}/>
+                        <UserInfo userInfo={userInfo} setUserManagerState={setUserManagerState}/>
 
                     </div>
                 </div>
