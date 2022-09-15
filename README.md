@@ -21,7 +21,7 @@
 - auth-jwt
 - Redis
 
-## Front 환경
+## Front 설정
 - npx create-react-app my-app
 - cd my-app
 - npm i (open folder 시)
