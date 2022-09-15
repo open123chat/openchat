@@ -83,22 +83,26 @@ const UserInfo = (props) => {
             <div>
                 가입일 : {userInfo.regDate}
             </div>
-            <diV>
-                <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}>
-                    권한 변경
-                </div>
-                <div>
-                    <select onChange={roleSelectBox}>
-                        <option>-권한-</option>
-                        <option value="ROLE_ADMIN">관리자</option>
-                        <option value="ROLE_USER">사용자</option>                        
-                    </select>
-                  
-                    
-                    <button style={{marginLeft:"5px", border:"0px", borderRadius:"5px", color:"white", backgroundColor:"gray"}} onClick={()=>{roleSelect()}}>설정</button>
-                </div>
-                
-            </diV>
+            
+                {
+                        localStorage.getItem("userNo") == userInfo.userNo
+                        ?
+                        <></>
+                        :
+                        <diV>
+                        <div style={{fontSize:"13px", color:"gray", marginTop:"10px"}}>
+                            권한 변경
+                        </div>
+                        <div>
+                            <select onChange={roleSelectBox}>
+                                <option>-권한-</option>
+                                <option value="ROLE_ADMIN">관리자</option>
+                                <option value="ROLE_USER">사용자</option>                        
+                            </select>
+                            <button style={{marginLeft:"5px", border:"0px", borderRadius:"5px", color:"white", backgroundColor:"gray"}} onClick={()=>{roleSelect()}}>설정</button>
+                        </div>
+                        </diV>   
+                } 
         </div>
     );
 };
