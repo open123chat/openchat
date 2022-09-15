@@ -1,3 +1,52 @@
+## 환경
+- windows10
+- Intelli J
+- Visual Studio Code
+- jdk1.8
+- tomcat9.0
+- mysql8.0
+- postman
+- lombok
+- gson (json파싱)
+- 인코딩 utf-8
+- git
+
+## Back 의존성
+- Spring Boot DevTools
+- Lombok
+- MariaDB Driver
+- MyBatis
+- Spring Security
+- Spring Web
+- auth-jwt
+- Redis
+
+## Front 환경
+- npx create-react-app my-app
+- cd my-app
+- npm i (open folder 시)
+- npm start
+
+리엑트, 라우터
+
+- npm i react-router react-router-dom
+
+부트 스트랩
+
+- npm i react-bootstrap bootstrap
+
+부트스트랩 사용 시 꼭 import 해주기 import 'bootstrap/dist/css/bootstrap.css';
+
+jwt토큰 decode
+
+- npm i jwt-decode 
+[https://www.npmjs.com/package/jwt-decode](https://www.npmjs.com/package/jwt-decode)
+
+Draft.js
+- npm i styled-components
+- npm i react-draft-wysiwyg draft-js Edit div태그 안 editorState상태 값을 Html 값으로 변환 라이브러리
+- npm i draftjs-to-html
+
 ## MySQL 테이블 생성
 ```sql
 CREATE TABLE `user` (   `userNo` int NOT NULL AUTO_INCREMENT,   
