@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ChatMessageVo {
-    private String userNickname;
+    private String userNickName;
     private String message;
     private String regDate;
 }

@@ -17,7 +17,7 @@ public class ChatService<T> {
 
 
     public void sendMessage(ChatMessageVo chatMessageVo) throws JsonProcessingException {
-        String key = chatMessageVo.getUserNickname();
+        String key = chatMessageVo.getUserNickName();
         redisTemplate.opsForValue().set(key, objectMapper.writeValueAsString(chatMessageVo));
     }
 

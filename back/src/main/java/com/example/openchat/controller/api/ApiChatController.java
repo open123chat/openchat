@@ -17,9 +17,10 @@ public class ApiChatController {
     private ChatService chatService;
     @PostMapping
     public String sendMessage(@RequestBody ChatMessageVo chatMessageVo) throws JsonProcessingException {
+        System.out.println("메시지 요청 : "+chatMessageVo);
             chatService.sendMessage(chatMessageVo);
 
-            String key = chatMessageVo.getUserNickname();
+            String key = chatMessageVo.getUserNickName();
             ChatMessageVo Message = (ChatMessageVo) chatService.getMessage(key, ChatMessageVo.class);
 
         System.out.println("Redis : key :"+key+" / Message : "+Message);
