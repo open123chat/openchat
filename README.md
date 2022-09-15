@@ -1,16 +1,16 @@
 ## MySQL 테이블 생성
 ```sql
 CREATE TABLE `user` (   `userNo` int NOT NULL AUTO_INCREMENT,   
-												`username` varchar(45) NOT NULL,   
-												`password` mediumtext NOT NULL,   
-												`userNickName` varchar(45) NOT NULL,   
-												`userEmail` varchar(45) NOT NULL,   
-												`roles` varchar(45) NOT NULL,   
-												`regDate` datetime NOT NULL,   
-												`deleteDate` datetime DEFAULT NULL,   
-												`state` enum('T','F') NOT NULL,   
-												PRIMARY KEY (`userNo`) ) 
-												ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+				`username` varchar(45) NOT NULL,   
+				`password` mediumtext NOT NULL,   
+				`userNickName` varchar(45) NOT NULL,   
+				`userEmail` varchar(45) NOT NULL,   
+				`roles` varchar(45) NOT NULL,   
+				`regDate` datetime NOT NULL,   
+				`deleteDate` datetime DEFAULT NULL,   
+				`state` enum('T','F') NOT NULL,   
+				PRIMARY KEY (`userNo`) ) 
+				ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `community` (   
 				`communityNo` int NOT NULL AUTO_INCREMENT,   
