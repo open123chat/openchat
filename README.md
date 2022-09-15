@@ -1,3 +1,65 @@
+## MySQL 테이블 생성
+```sql
+CREATE TABLE `user` (   `userNo` int NOT NULL AUTO_INCREMENT,   
+												`username` varchar(45) NOT NULL,   
+												`password` mediumtext NOT NULL,   
+												`userNickName` varchar(45) NOT NULL,   
+												`userEmail` varchar(45) NOT NULL,   
+												`roles` varchar(45) NOT NULL,   
+												`regDate` datetime NOT NULL,   
+												`deleteDate` datetime DEFAULT NULL,   
+												`state` enum('T','F') NOT NULL,   
+												PRIMARY KEY (`userNo`) ) 
+												ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `community` (   
+				`communityNo` int NOT NULL AUTO_INCREMENT,   
+				`userNo` int NOT NULL,   
+				`communityTitle` varchar(45) NOT NULL,   
+				`communityContent` mediumtext NOT NULL,   
+				`communityDate` datetime NOT NULL,   
+				PRIMARY KEY (`communityNo`,`userNo`),   
+				KEY `fk_community_user` (`userNo`),   
+				CONSTRAINT `fk_community_user` 
+				FOREIGN KEY (`userNo`) 
+				REFERENCES `user` (`userNo`) ) 
+				ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `reply` (   
+			`replyNo` int NOT NULL AUTO_INCREMENT,   
+			`communityNo` int NOT NULL,   
+			`userNo` int NOT NULL,   
+			`replyContent` varchar(45) NOT NULL,   
+			`position` int NOT NULL,   
+			`depth` int NOT NULL,   
+			`regDate` datetime NOT NULL,   
+			PRIMARY KEY (`replyNo`,`communityNo`,`userNo`),   
+			KEY `fk_reply_community1` (`communityNo`),   
+			KEY `fk_reply_user1` (`userNo`),   
+			CONSTRAINT `fk_reply_community1` 
+			FOREIGN KEY (`communityNo`) 
+			REFERENCES `community` (`communityNo`),   
+			CONSTRAINT `fk_reply_user1` 
+			FOREIGN KEY (`userNo`) 
+			REFERENCES `user` (`userNo`) ) 
+			ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `notice` (   
+			`noticeNo` int NOT NULL AUTO_INCREMENT,   
+			`userNo` int NOT NULL,   
+			`noticeTitle` varchar(45) NOT NULL,   
+			`noticeContent` mediumtext NOT NULL,   
+			`regDate` datetime NOT NULL,   
+			PRIMARY KEY (`noticeNo`,`userNo`),   
+			KEY `fk_notice_user1` (`userNo`),   
+			CONSTRAINT `fk_notice_user1` 
+			FOREIGN KEY (`userNo`) 
+			REFERENCES `user` (`userNo`) ) 
+			ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+```
+
+
+
 # openchat
 ### Redis 설치
 https://github.com/microsoftarchive/redis/releases
