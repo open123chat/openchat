@@ -23,6 +23,7 @@ public class ChatService<T> {
 
     public <T> T getMessage(String key, Class<T> classType) throws JsonProcessingException {
         String redisValue = (String)redisTemplate.opsForValue().get(key);
+        System.out.println("레디스 가져온 값 : "+redisValue);
         return objectMapper.readValue(redisValue,classType);
     }
 }

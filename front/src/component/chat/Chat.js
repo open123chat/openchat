@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SiteLayout from '../../layout/SiteLayout';
 import { Button, Card, Form, FormControl, Nav } from 'react-bootstrap';
+import SockJS from 'sockjs-client';
+import StompJs from "stompjs";
+
 //rsc
 const Chat = () => {
+    //messageInputState
+    const [messageValue,setMessageValue] = useState();
+    
+    const socket = new SockJS("http://localhost:8080/ws/chat");
+    const stomp = StompJs.over(socket);
+
+
+    //메시지 전송
+    const messageInputValue = (e) =>{
+        setMessageValue({
+            ...messageValue,
+            [e.target.name] : e.target.value
+        });
+    }
+    const sendMessage = () =>{
+         console.log('Send Message : '+messageValue.message);
+    }
+
+    //DOM
     return (
         <SiteLayout>
         <div style={{padding:"20px", width:"80%",height:"80%"}}>
@@ -33,15 +55,19 @@ const Chat = () => {
                 {/* 채팅 내역 */}
                 <div style={{width:"65%",height:"100%", border:"1px solid grey", borderRadius:"5px"}}>
                     <div style={{padding:"2%", height:"80%"}}>
-                        채팅 내역
+                        <div style={{width:"30%", border:"1px solid black"}}>
+                            작성사
+                            안녕
+                        </div>
                     </div>
 
                     {/* 채팅 입력 */}
                     <div style={{height:"20%"}}>
                         <div style={{padding:"5px"}}>
-                            <input style={{ width:"100%"}}  placeholder='채팅을 입력해 주세요'/>
+                            <input style={{ width:"100%"}} id="message" name='message' placeholder='채팅을 입력해 주세요' onChange={messageInputValue}/>
                             <div style={{display:"flex", justifyContent:"flex-end"}}>
-                                <button>
+                                <button style={{border:"0px",borderRadius:"5px", width:"70px",height:"30px"}}
+                                        onClick={()=>{sendMessage()}}>
                                     전송
                                 </button>
                             </div>
