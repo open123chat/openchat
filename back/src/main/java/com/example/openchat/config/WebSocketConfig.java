@@ -17,5 +17,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
         registry.addHandler(webSocketChatHandler,"/ws/chat")
                 .setAllowedOrigins("http://localhost:3000")
                 .withSockJS();
+        System.out.println("웹소켓 들어옴");
     }
 }
