@@ -33,11 +33,20 @@ const Chat = () => {
             // setMessageList([...messageList,responeData]);
             //배열 추가
             setMessageList(messageList=> [...messageList,responeData]);
-            
-    
         }
+        socket.onclose = (e) => {
+            alert('연결종료');
+        }
+        
     },[]);
 
+    useEffect(()=>{
+        return ( ()=>{
+            if(sockJs){
+                sockJs.onclose();
+            }
+        })
+    },[sockJs]);
     
  
 
