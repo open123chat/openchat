@@ -29,6 +29,7 @@ const Chat = () => {
             console.log('message userNickName Data:'+responeData.userNickName);
             console.log('message message Data:'+responeData.message);
             
+            
             //오브젝트 추가
             // setMessageList([...messageList,responeData]);
             //배열 추가
