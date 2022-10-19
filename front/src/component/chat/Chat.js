@@ -14,7 +14,6 @@ const Chat = () => {
         message:''
     });
     //messageList
-    const [list,setList]=useState([]);
     const [messageList,setMessageList] = useState([]);
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,21 +26,15 @@ const Chat = () => {
             console.log('받은 데이터 (onmessage): '+message);
             const responeData = JSON.parse(message.data);
             console.log('message Data:'+responeData);
-            console.log('message username Data:'+responeData.username);
+            console.log('message userNickName Data:'+responeData.userNickName);
             console.log('message message Data:'+responeData.message);
             
-            // console.log('onmessage message:'+responseData.data.message);
-            
-            
+            //오브젝트 추가
+            // setMessageList([...messageList,responeData]);
+            //배열 추가
             setMessageList(messageList=> [...messageList,responeData]);
-            // setMessageList(list);
-            // const arr = [];
-            // messageList.forEach((e) => {
-	        //     arr.push(e)
-            // });
-            // arr.push(responeData);
-            // setMessageList(arr);
-            console.log('쌓이는 중?'+messageList);
+            
+    
         }
     },[]);
 
@@ -59,7 +52,7 @@ const Chat = () => {
          console.log('Send Message : '+messageValue);
          console.log('Send Message : '+messageValue.message);
          var data = {
-            username : localStorage.username,
+            userNickName : localStorage.userNickName,
             message : messageValue.message
          }
          sockJs.send(JSON.stringify(data));

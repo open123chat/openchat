@@ -1,11 +1,19 @@
 import React from 'react';
 
 const ChatList = (props) => {
-    const {username,message} = props.message;
+    const {userNickName,message} = props.message;
     return (
-        <div style={{width:"30%", border:"1px solid black"}}>
-                            {username} :
+        <div>
+        { userNickName == localStorage.getItem('userNickName') ?
+            <div>
+                {message}
+            </div>
+        :
+            <div style={{width:"30%", border:"1px solid black"}}>
+                            {userNickName} :
                             {message}
+            </div>
+        }
         </div>
     );
 };

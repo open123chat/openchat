@@ -49,6 +49,7 @@ const Login = () => {
                         localStorage.setItem("username", decoded.username);
                         localStorage.setItem("userNo",decoded.id);
                         localStorage.setItem("role",decoded.role);
+                        localStorage.setItem("userNickName",decoded.userNickName);
                      }
 
                     return res;
