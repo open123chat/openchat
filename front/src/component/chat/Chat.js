@@ -7,21 +7,46 @@ import ChatList from './ChatList';
 
 //rsc
 const Chat = () => {
+    //sockJs
+    const [sockJs,setSockJs] = useState();
     //messageInputState
     const [messageValue,setMessageValue] = useState({
         message:''
     });
     //messageList
+    const [list,setList]=useState([]);
     const [messageList,setMessageList] = useState([]);
+///////////////////////////////////////////////////////////////////////////////////////////////
 
-    const socket = new SockJS("http://localhost:8080/ws/chat");
-    // const stomp = StompJs.over(socket);
+    useEffect( ()=>{
+        const socket = new SockJS("http://localhost:8080/ws/chat");
+        // const stomp = StompJs.over(socket);
+        setSockJs(socket);
+        socket.onmessage = (message) =>{
+            // var responseData = JSON.stringify(message);
+            console.log('받은 데이터 (onmessage): '+message);
+            const responeData = JSON.parse(message.data);
+            console.log('message Data:'+responeData);
+            console.log('message username Data:'+responeData.username);
+            console.log('message message Data:'+responeData.message);
+            
+            // console.log('onmessage message:'+responseData.data.message);
+            
+            
+            setMessageList(messageList=> [...messageList,responeData]);
+            // setMessageList(list);
+            // const arr = [];
+            // messageList.forEach((e) => {
+	        //     arr.push(e)
+            // });
+            // arr.push(responeData);
+            // setMessageList(arr);
+            console.log('쌓이는 중?'+messageList);
+        }
+    },[]);
 
-    socket.onmessage = (message) =>{
-        
-        console.log('onmessage :'+message.data);
-        setMessageList([...messageList, message]);
-    }
+    
+ 
 
     //메시지 전송
     const messageInputValue = (e) =>{
@@ -33,7 +58,11 @@ const Chat = () => {
     const sendMessage = () =>{
          console.log('Send Message : '+messageValue);
          console.log('Send Message : '+messageValue.message);
-         socket.send(localStorage.username+":"+messageValue.message);
+         var data = {
+            username : localStorage.username,
+            message : messageValue.message
+         }
+         sockJs.send(JSON.stringify(data));
          
          setMessageValue({message:''});
     }
