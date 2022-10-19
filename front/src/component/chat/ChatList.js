@@ -1,3 +1,4 @@
+import { faAlignJustify } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
 const ChatList = (props) => {
@@ -5,13 +6,30 @@ const ChatList = (props) => {
     return (
         <div>
         { userNickName == localStorage.getItem('userNickName') ?
-            <div>
-                {message}
+            //메시지 본인일 경우
+            <div style={{display:"flex", justifyContent:"space-between"}}>
+                <div>
+                    
+                </div>
+                <div style={{border:"1px solid black",backgroundColor:"#f7e600",borderRadius:"5px",width:"40%",marginBottom:"5px"}}>
+                    <div style={{padding:"5px"}}>
+                                    <p style={{color:"white"}}>{message}</p>
+                    </div>
+                </div>                
             </div>
+
         :
-            <div style={{width:"30%", border:"1px solid black"}}>
-                            {userNickName} :
-                            {message}
+            //상대방 메시지
+            <div style={{width:"40%"}}>
+                            <div>
+                                {userNickName}
+                            </div>
+                            <div style={{border:"1px solid black",backgroundColor:"#737373", borderRadius:"5px"}}>
+                                <div style={{padding:"5px"}}>
+                                    <p style={{color:"white"}}>{message}</p>
+                                </div>
+                                
+                            </div>
             </div>
         }
         </div>
