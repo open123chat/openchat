@@ -78,11 +78,6 @@ const Chat = () => {
                     <Nav.Item>
                         <Nav.Link href="" onClick={()=>{}}>전체 채팅</Nav.Link>
                     </Nav.Item>
-                    
-                    <Nav.Item>
-                        <Nav.Link href="" onClick={()=>{}}>내 채팅</Nav.Link>
-                    </Nav.Item>
-                    
                     </Nav>
                 </Card.Header>
             </Card>
