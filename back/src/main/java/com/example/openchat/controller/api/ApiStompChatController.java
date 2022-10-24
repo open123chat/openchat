@@ -12,8 +12,11 @@ public class ApiStompChatController {
     // 특정 Broker로 메시지 전달
     private final SimpMessagingTemplate template;
 
-    //@MessageMapping = WebSocket으로 들어오는 메시지를 처리
 
+
+
+
+    //@MessageMapping = WebSocket으로 들어오는 메시지를 처리
     //StompWebSocketConfig에서 설정한 setApplicationDestinationPrefixes("/pub") 와 @MessageMapping 경로가 병합된다.
     // /pub/chat/message
     @MessageMapping(value = "/chat/message")

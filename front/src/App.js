@@ -15,6 +15,7 @@ import NoticeWrite from "./component/notice/NoticeWrite"
 import NoticeDetail from "./component/notice/NoticeDetail";
 import NoticeUpdate from "./component/notice/NoticeUpdate";
 import UserManager from "./component/admin/UserManager";
+import ChatRoom from "./component/chat/ChatRoom";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/notice/:noticeNo" element={<NoticeDetail/>}/>
           <Route path="/notice/update/:noticeNo" element={<NoticeUpdate />} />
           <Route path="/userManager"  element={<UserManager/> } />
+          <Route path="/chatRoom" element={<ChatRoom/>}/>
       </Routes>
     </Router>
     );

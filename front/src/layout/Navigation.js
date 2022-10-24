@@ -8,6 +8,7 @@ const Navigation = () => {
         <div className="lnb">
             <div className="lnb-list">
                 <Link to="/chat">채팅</Link>
+                <Link to="/chatRoom">내 채팅</Link>
                 <Link to="/community">커뮤니티</Link>
                 <Link to="/notice">공지사항</Link>
             </div>
