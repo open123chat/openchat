@@ -1,3 +1,7 @@
+##구현 영상
+https://www.youtube.com/watch?v=XTuTRrhYwaE&t=1s
+
+
 ## 환경
 - windows10
 - Intelli J
